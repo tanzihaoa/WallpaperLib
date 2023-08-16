@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--App title bar-->
+    <declare-styleable name="XAppTitleBar">
+        <!--标题文字-->
+        <attr name="xtbTitleText" format="string" />
+        <!--标题文字颜色-->
+        <attr name="xtbTitleTxtColor" format="color" />
+        <!--返回按钮颜色-->
+        <attr name="xtbBackIconColor" format="color" />
+        <!--是否显示返回按钮 默认显示-->
+        <attr name="xtbBackIconIsShow" format="boolean" />
+
+        <attr name="xtbIsWindowTranslucentStatus" format="boolean" />
+
+        <!--右边显示的控件-->
+        <attr name="xtbRightShowView" format="enum">
+            <!--右边不显示-->
+            <enum name="view_NONE" value="0" />
+            <!--右边显示文字-->
+            <enum name="VIEW_TEXT" value="1" />
+            <!--右边显示图片-->
+            <enum name="VIEW_IMAGE" value="2" />
+
+        </attr>
+
+        <!--左边图片资源-->
+        <attr name="xtbLeftImgSrc" format="reference|color" />
+
+        <!--右边文字-->
+        <attr name="xtbRightText" format="string" />
+        <!--右边文字颜色-->
+        <attr name="xtbRightTxtColor" format="color" />
+        <!--右边文字大小-->
+        <attr name="xtbRightTxtSize" format="dimension" />
+        <!--右边文字是否加粗  默认不加粗-->
+        <attr name="xtbRightTxtIsBold" format="boolean" />
+
+        <!--右边图片资源-->
+        <attr name="xtbRightImgSrc" format="reference|color" />
+        <!--右边图片颜色-->
+        <attr name="xtbRightImgColor" format="integer" />
+        <!--左边图片距离左边距离-->
+        <attr name="xtbLeftImgPaddingLeft" format="dimension" />
+        <!--左边图片距离右边距离-->
+        <attr name="xtbLeftImgPaddingRight" format="dimension" />
+        <!--右边图片宽-->
+        <attr name="xtbRightImgWidth" format="dimension" />
+        <!--右边图片高-->
+        <attr name="xtbRightImgHeight" format="dimension" />
+    </declare-styleable>
+
+    <!--BMIView-->
+    <declare-styleable name="BMIView">
+        <!--BMI值-->
+        <attr name="bvBMI" format="float" />
+
+        <!--指针图片资源-->
+        <attr name="bvImgSrc" format="reference|color" />
+
+    </declare-styleable>
+</resources>
