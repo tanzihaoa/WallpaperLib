@@ -1,7 +1,6 @@
 package com.tzh.wallpaper.util.download
 
 import android.content.Context
-import com.bangbangce.mm.util.reName
 import com.liulishuo.okdownload.DownloadTask
 import com.liulishuo.okdownload.SpeedCalculator
 import com.liulishuo.okdownload.StatusUtil
