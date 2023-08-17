@@ -53,7 +53,7 @@ object BitmapUtil {
             val bitmap = localUrlToBitmap(downloadUtil.getPath(imgUrl))
             listener.sure(bitmap)
         }else{
-            downloadUtil.onDownloadFile(imgUrl,imgUrl,object : FileDownloadUtil.OnDownloadListener() {
+            downloadUtil.onDownloadFile(imgUrl,object : FileDownloadUtil.OnDownloadListener() {
                 override fun onSuccess(file: File) {
                     val bitmap = localFileToBitmap(file)
                     listener.sure(bitmap)

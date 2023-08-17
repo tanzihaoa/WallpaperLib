@@ -1,6 +1,7 @@
 package com.tzh.wallpaper.util.download
 
 import android.content.Context
+import android.util.Log
 import com.liulishuo.okdownload.DownloadTask
 import com.liulishuo.okdownload.SpeedCalculator
 import com.liulishuo.okdownload.StatusUtil
@@ -30,17 +31,21 @@ class FileDownloadUtil(var context : Context,@DownloadType val type : String) {
     /**
      * 下载
      */
-    fun onDownloadFile(url: String?, saveFileName: String?,listener: OnDownloadListener?) {
+    fun onDownloadFile(url: String?,listener: OnDownloadListener?) {
         if (url.isNullOrEmpty()) return
         if(FILE_OK.isEmpty()) initFileName(url)
         getFileCacheFolder()?.let {
             if (!it.exists().toDefault(false) ) {
                 AppPathManager.ifFolderExit(it.absolutePath)
             }
-            if (saveFileName.isNullOrEmpty()) return
 
-            var saveName = saveFileName.substring(url.lastIndexOf("/")+1)
-            saveName = if(saveName.indexOf(FILE_OK)>0)saveName.replace(FILE_OK,FILE_TMP) else saveName + FILE_TMP
+            var saveName = getSaveName(url)
+
+            if(saveName.indexOf(FILE_OK)>0){
+                saveName = saveName.replace(FILE_OK,FILE_TMP)
+            } else {
+                saveName += FILE_TMP
+            }
 
             if (downloadTask != null && StatusUtil.getStatus(downloadTask!!) == StatusUtil.Status.RUNNING) {
                 return
@@ -140,21 +145,31 @@ class FileDownloadUtil(var context : Context,@DownloadType val type : String) {
      *
      */
     private fun getFileCacheFolder(): File? {
-        val file = context.applicationContext.getExternalFilesDir("mFile/")
+        val file = context.getExternalFilesDir("mFile/")
         AppPathManager.ifFolderExit(file?.absolutePath)
         return file
     }
 
     fun isHaveFile(url: String) : Boolean{
         if(FILE_OK.isEmpty()) initFileName(url)
-        val saveName = url.substring(url.lastIndexOf("/")+1)
+        val saveName = getSaveName(url)
         val localFile = File(getFileCacheFolder()?.absolutePath + "/" +(if(saveName.indexOf(FILE_OK)>0)saveName else saveName + FILE_OK))
         return localFile.exists()
     }
+
+    fun getSaveName(url: String): String {
+        if (FILE_OK.isEmpty()) initFileName(url)
+        val mUrl = url.substring(url.lastIndexOf("/") + 1)
+        return if (mUrl.indexOf(FILE_OK) > 0) mUrl.substring(
+            0,
+            mUrl.indexOf(FILE_OK) + FILE_OK.length
+        ) else mUrl
+    }
+
     fun getPath(url: String):String{
         if(FILE_OK.isEmpty()) initFileName(url)
         val mLocal = getFileCacheFolder()?.absolutePath
-        val mUrl = url.substring(url.lastIndexOf("/")+1)
+        val mUrl = getSaveName(url)
         var url2 = "$mLocal/$mUrl"
         url2 = if(url2.indexOf(FILE_OK)>0)url2 else url2 + FILE_OK
         return File(url2).absolutePath

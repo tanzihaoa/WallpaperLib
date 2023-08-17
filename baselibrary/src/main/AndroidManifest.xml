@@ -3,9 +3,12 @@
     package="com.tzh.wallpaper">
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <application>
         <service android:name=".service.VideoWallpaper"
             android:permission="android.permission.BIND_WALLPAPER"
+            android:exported="true"
             >
             <intent-filter>
                 <action android:name="android.service.wallpaper.WallpaperService"/>
