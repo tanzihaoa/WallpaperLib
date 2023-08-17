@@ -2,14 +2,21 @@ package com.tzh.wallpaper.util
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.graphics.*
 import android.graphics.drawable.Drawable
+import android.net.Uri
+import android.os.Build
+import android.os.Environment
+import android.provider.MediaStore
 import android.util.Base64
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.tzh.wallpaper.util.download.DownloadType
 import com.tzh.wallpaper.util.download.FileDownloadUtil
 import java.io.ByteArrayOutputStream
 import java.io.File
+import java.io.FileOutputStream
 import java.io.IOException
 
 
@@ -166,5 +173,65 @@ object BitmapUtil {
 
     interface BitmapListener{
         fun sure(bitmap: Bitmap)
+    }
+
+    /**
+     * 保存图片
+     */
+    fun saveUrl(context: Context, url : String){
+        urlToBitmap(context,url,object : BitmapListener{
+            override fun sure(bitmap: Bitmap) {
+                saveBitmap(context,bitmap)
+            }
+        })
+    }
+
+    /**
+     * 保存图片
+     */
+    fun saveBitmap(context: Context, bitmap: Bitmap) {
+        val name =  System.currentTimeMillis().toString() +".jpg"
+        if (Build.VERSION.SDK_INT >= 29) { //api版本  29 对应Android系统10.0
+            val path = MediaStore.Images.Media.insertImage(
+                context.contentResolver,
+                bitmap,
+                name,
+                ""
+            )
+            // 最后通知图库更新
+            // 通知图库更新
+            val scannerIntent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse(path))
+            context.sendBroadcast(scannerIntent)
+            Toast.makeText(context, "已保存至手机相册", Toast.LENGTH_SHORT).show()
+        } else {
+            val fos: FileOutputStream
+            try {
+                val root = File(
+                    Environment.getExternalStorageDirectory().toString(),
+                    "MySaveImage"
+                ) //此处自定义储存图片路径文件夹名称
+                if (!root.exists()) {
+                    root.mkdirs()
+                }
+                val file = File(
+                    root, name
+                )
+                fos = FileOutputStream(file)
+                bitmap.compress(Bitmap.CompressFormat.PNG, 90, fos)
+                fos.flush()
+                fos.close()
+                // 最后通知图库更新
+                context.sendBroadcast(
+                    Intent(
+                        Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,
+                        Uri.fromFile(File(file.path))
+                    )
+                )
+                Toast.makeText(context, "已保存至手机相册", Toast.LENGTH_SHORT).show()
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Toast.makeText(context, "保存失败", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }
