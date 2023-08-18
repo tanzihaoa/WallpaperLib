@@ -1,7 +1,6 @@
 package com.tzh.wallpaper.util.wallpaper
 
 import android.Manifest
-import android.app.Activity
 import android.app.WallpaperManager
 import android.content.ComponentName
 import android.content.Context
@@ -117,18 +116,15 @@ object WallpaperManagerUtil {
             override fun onAgree() {
                 val fileDownloadUtil = FileDownloadUtil(activity,DownloadType.MP4)
                 if(fileDownloadUtil.isHaveFile(url)){
-                    Log.e("setVideoWallpaper=====1",fileDownloadUtil.getPath(url))
                     VideoWallpaper.setToWallPaper(activity,fileDownloadUtil.getPath(url),isVolume)
                 }else{
                     fileDownloadUtil.onDownloadFile(url,object : FileDownloadUtil.OnDownloadListener(){
                         override fun onSuccess(file: File) {
-                            Log.e("setVideoWallpaper=====2",fileDownloadUtil.getPath(url))
                             VideoWallpaper.setToWallPaper(activity,fileDownloadUtil.getPath(url),isVolume)
                         }
 
                         override fun onError(throwable: Throwable) {
 
-                            Log.e("onError=====",throwable.message.toDefault(""))
                         }
                     })
                 }

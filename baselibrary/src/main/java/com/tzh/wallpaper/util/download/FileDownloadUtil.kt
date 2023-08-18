@@ -1,7 +1,6 @@
 package com.tzh.wallpaper.util.download
 
 import android.content.Context
-import android.util.Log
 import com.liulishuo.okdownload.DownloadTask
 import com.liulishuo.okdownload.SpeedCalculator
 import com.liulishuo.okdownload.StatusUtil
@@ -31,15 +30,15 @@ class FileDownloadUtil(var context : Context,@DownloadType val type : String) {
     /**
      * 下载
      */
-    fun onDownloadFile(url: String?,listener: OnDownloadListener?) {
-        if (url.isNullOrEmpty()) return
+    fun onDownloadFile(url: String, listener: OnDownloadListener?, mSaveName: String = url) {
+        if (url.isEmpty()) return
         if(FILE_OK.isEmpty()) initFileName(url)
         getFileCacheFolder()?.let {
             if (!it.exists().toDefault(false) ) {
                 AppPathManager.ifFolderExit(it.absolutePath)
             }
 
-            var saveName = getSaveName(url)
+            var saveName = getSaveName(mSaveName)
 
             if(saveName.indexOf(FILE_OK)>0){
                 saveName = saveName.replace(FILE_OK,FILE_TMP)
