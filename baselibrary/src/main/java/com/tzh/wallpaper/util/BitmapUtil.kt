@@ -198,7 +198,6 @@ object BitmapUtil {
                 name,
                 ""
             )
-            // 最后通知图库更新
             // 通知图库更新
             val scannerIntent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse(path))
             context.sendBroadcast(scannerIntent)
