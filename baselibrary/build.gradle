@@ -51,4 +51,7 @@ dependencies {
     api 'com.liulishuo.okdownload:okhttp:1.0.7'
 
     api 'com.guolindev.permissionx:permissionx:1.6.4'
+
+    //视频播放
+    api 'cn.jzvd:jiaozivideoplayer:7.7.0'
 }

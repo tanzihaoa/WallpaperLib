@@ -1,6 +1,7 @@
 package com.tzh.myapplication
 
 import android.util.Log
+import com.tzh.myapplication.activity.VideoActivity
 import com.tzh.myapplication.base.AppBaseActivity
 import com.tzh.myapplication.databinding.ActivityMainBinding
 import com.tzh.wallpaper.util.video.VideoUtil
@@ -28,7 +29,7 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
     }
 
     fun toImage(){
-
+        VideoActivity.start(this)
     }
 
     fun start(){

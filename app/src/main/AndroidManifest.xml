@@ -69,6 +69,10 @@
                     android:scheme="qdsandroid" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".activity.VideoActivity"
+            android:screenOrientation="portrait"
+            android:exported="true" />
     </application>
 
 </manifest>

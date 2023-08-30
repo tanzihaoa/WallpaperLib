@@ -58,7 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_margin="16dp"
-            android:text="toImage"
+            android:text="toVideo"
             app:shapeCorners="20dp"
             android:gravity="center"
             app:shapeBackgroundColor="@color/color_00f3b8"

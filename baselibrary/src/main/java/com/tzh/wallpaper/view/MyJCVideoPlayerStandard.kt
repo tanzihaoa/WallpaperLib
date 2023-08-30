@@ -1,0 +1,18 @@
+package com.tzh.wallpaper.view
+
+import android.content.Context
+import android.util.AttributeSet
+import cn.jzvd.JzvdStd
+import com.tzh.wallpaper.R
+
+class MyJCVideoPlayerStandard(context: Context,attrs: AttributeSet) : JzvdStd(context, attrs) {
+
+    override fun init(context: Context) {
+        super.init(context)
+
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.layout_jzstd_notitle
+    }
+}
