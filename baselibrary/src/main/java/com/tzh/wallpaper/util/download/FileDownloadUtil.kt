@@ -159,10 +159,15 @@ class FileDownloadUtil(var context : Context,@DownloadType val type : String) {
     fun getSaveName(url: String): String {
         if (FILE_OK.isEmpty()) initFileName(url)
         val mUrl = url.substring(url.lastIndexOf("/") + 1)
-        return if
-                (mUrl.indexOf(FILE_OK) > 0) mUrl.substring(0, mUrl.indexOf(FILE_OK)).replace(".","").replace("/","") + FILE_OK
-            else
-                mUrl.replace(".","").replace("/","")
+        return if (mUrl.indexOf(FILE_OK) > 0) {
+                    mUrl.substring(0, mUrl.indexOf(FILE_OK)).replace(".","").replace("/","") + FILE_OK
+                } else{
+                    if(mUrl.lastIndexOf(".") > 0){
+                        mUrl.substring(0, mUrl.lastIndexOf(".")).replace(".","").replace("/","")
+                    }else{
+                        mUrl.replace(".","").replace("/","")
+                    }
+                }
     }
 
     fun getPath(url: String):String{
