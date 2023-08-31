@@ -43,8 +43,4 @@ class VideoActivity : AppBaseActivity<ActivityVideoBinding>(R.layout.activity_vi
         //home back
         Jzvd.goOnPlayOnResume()
     }
-
-    override fun onDestroy() {
-        super.onDestroy()
-    }
 }

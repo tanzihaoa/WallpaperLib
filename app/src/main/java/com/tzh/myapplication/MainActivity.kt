@@ -10,7 +10,7 @@ import com.tzh.wallpaper.util.wallpaper.WallpaperManagerUtil
 
 class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
-    val url = "https://api.uubook.cn/oss0818/api/ossUrl.php?time=1693382619&go=1&process=&osskey=wallpaper_static/0daef4b6e87179cc161e0c82853ba83f.mp4&key=14eb0eb5ebaf47ec3be5cebda85bbc09"
+    val url = "https://wallpaper.yjtechome.top/20163381_1679646019698_655549.mp4?e=2322980345&token=WsDlLjDgtDdmtdIV5Or9qEHGB6sODAC-O3wwCqF7:-TTzGSF-eMgJhVQm0BX7_EKl1EQ="
 
 
     override fun initView() {
