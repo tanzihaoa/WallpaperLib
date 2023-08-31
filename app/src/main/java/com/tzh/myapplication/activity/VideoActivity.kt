@@ -2,7 +2,9 @@ package com.tzh.myapplication.activity
 
 import android.content.Context
 import android.content.Intent
+import cn.jzvd.JZDataSource
 import cn.jzvd.Jzvd
+import cn.jzvd.JzvdStd
 import com.tzh.myapplication.R
 import com.tzh.myapplication.base.AppBaseActivity
 import com.tzh.myapplication.databinding.ActivityVideoBinding
@@ -19,11 +21,30 @@ class VideoActivity : AppBaseActivity<ActivityVideoBinding>(R.layout.activity_vi
 
     override fun initView() {
         Jzvd.setVideoImageDisplayType(Jzvd.VIDEO_IMAGE_DISPLAY_TYPE_FILL_SCROP);
-        binding.videoPlay.setUp(url, "")
+        val jzDataSource = JZDataSource(url, "")
+        jzDataSource.looping = true
+        binding.videoPlay.setUp(jzDataSource,JzvdStd.SCREEN_NORMAL)
+
         binding.videoPlay.startVideoAfterPreloading()
     }
 
     override fun initData() {
 
+    }
+
+    override fun onPause() {
+        super.onPause()
+        //home back
+        Jzvd.goOnPlayOnPause()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        //home back
+        Jzvd.goOnPlayOnResume()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 }
