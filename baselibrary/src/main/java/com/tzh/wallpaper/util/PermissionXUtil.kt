@@ -1,4 +1,4 @@
-package com.zzsr.baselibrary.util
+package com.tzh.wallpaper.util
 
 import android.Manifest
 import androidx.appcompat.app.AppCompatActivity

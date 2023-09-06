@@ -7,15 +7,15 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.tzh.wallpaper.service.VideoWallpaper
 import com.tzh.wallpaper.util.BitmapUtil
 import com.tzh.wallpaper.util.download.DownloadType
 import com.tzh.wallpaper.util.download.FileDownloadUtil
-import com.tzh.wallpaper.util.toDefault
-import com.zzsr.baselibrary.util.OnPermissionCallBackListener
-import com.zzsr.baselibrary.util.PermissionXUtil
+import com.tzh.wallpaper.util.OnPermissionCallBackListener
+import com.tzh.wallpaper.util.PermissionXUtil
 import java.io.File
 import java.io.IOException
 
@@ -26,13 +26,13 @@ object WallpaperManagerUtil {
     fun setWallpaper(context: AppCompatActivity, url : String){
         PermissionXUtil.requestAnyPermission(context, mutableListOf<String>().apply {
             add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        },object : OnPermissionCallBackListener{
+        },object : OnPermissionCallBackListener {
             override fun onAgree() {
                 val manager = context.getSystemService(Context.WALLPAPER_SERVICE) as WallpaperManager
                 BitmapUtil.urlToBitmap(context,url,object : BitmapUtil.BitmapListener{
                     override fun sure(bitmap: Bitmap) {
                         manager.setBitmap(bitmap)
+                        Toast.makeText(context,"设置成功",Toast.LENGTH_SHORT).show()
                     }
                 })
             }
@@ -49,14 +49,14 @@ object WallpaperManagerUtil {
     fun setWallpaper(fragment : Fragment, url : String){
         PermissionXUtil.requestAnyPermission(fragment, mutableListOf<String>().apply {
             add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        },object : OnPermissionCallBackListener{
+        },object : OnPermissionCallBackListener {
             override fun onAgree() {
                 val manager = fragment.activity?.getSystemService(Context.WALLPAPER_SERVICE) as WallpaperManager
                 fragment.context?.let {
                     BitmapUtil.urlToBitmap(it,url,object : BitmapUtil.BitmapListener{
                         override fun sure(bitmap: Bitmap) {
                             manager.setBitmap(bitmap)
+                            Toast.makeText(it,"设置成功",Toast.LENGTH_SHORT).show()
                         }
                     })
                 }
@@ -77,7 +77,7 @@ object WallpaperManagerUtil {
         fragment.context?.apply {
             PermissionXUtil.requestAnyPermission(fragment, mutableListOf<String>().apply {
                 add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            },object : OnPermissionCallBackListener{
+            },object : OnPermissionCallBackListener {
                 override fun onAgree() {
                     val fileDownloadUtil = FileDownloadUtil(this@apply,DownloadType.MP4)
                     if(fileDownloadUtil.isHaveFile(url)){
@@ -112,7 +112,7 @@ object WallpaperManagerUtil {
     fun setVideoWallpaper(activity : AppCompatActivity, url : String,isVolume : Boolean = false){
         PermissionXUtil.requestAnyPermission(activity, mutableListOf<String>().apply {
             add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        },object : OnPermissionCallBackListener{
+        },object : OnPermissionCallBackListener {
             override fun onAgree() {
                 val fileDownloadUtil = FileDownloadUtil(activity,DownloadType.MP4)
                 if(fileDownloadUtil.isHaveFile(url)){
