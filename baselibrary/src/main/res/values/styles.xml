@@ -17,6 +17,14 @@
         <item name="android:windowDrawsSystemBarBackgrounds" >false</item>
     </style>
 
+    <!--从底部进入退出动画-->
+    <style name="BottomAnimation" parent="android:Animation">
+        <!-- //弹入动画-->
+        <item name="android:windowEnterAnimation">@anim/dialog_bottom_in</item>
+        <!-- //弹出动画-->
+        <item name="android:windowExitAnimation">@anim/dialog_bottom_out</item>
+    </style>
+
     <declare-styleable name="ImageTextView">
         <!--图片宽-->
         <attr name="itvImgWidth" format="dimension" />

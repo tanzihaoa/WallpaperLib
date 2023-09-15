@@ -34,7 +34,7 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
 
     fun start(){
         Log.e("start=====","start")
-        WallpaperManagerUtil.setVideoWallpaper(this,url,true)
+        WallpaperManagerUtil.setVideoWallpaperDialog(this,url)
     }
 
     fun saveVideo(){
