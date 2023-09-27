@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.tzh.demo"
-        minSdk 23
+        minSdk 24
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -106,7 +106,7 @@ dependencies {
     implementation 'com.airbnb.android:lottie:6.0.0'
     api 'androidx.multidex:multidex:2.0.1'
 
-
     api 'com.github.tanzihaoa:ModelLib:v1.1.0'
+
     implementation project(':baselibrary')
 }

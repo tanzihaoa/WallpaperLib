@@ -1,11 +1,14 @@
 package com.tzh.myapplication
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import com.tzh.myapplication.activity.VideoActivity
 import com.tzh.myapplication.base.AppBaseActivity
 import com.tzh.myapplication.databinding.ActivityMainBinding
 import com.tzh.wallpaper.util.video.VideoUtil
 import com.tzh.wallpaper.util.wallpaper.WallpaperManagerUtil
+import com.tzh.wallpaper.widget.WidgetUtil
 
 
 class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main) {
@@ -24,8 +27,9 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun toRecycler(){
-
+        WidgetUtil.addToMainScreen(this)
     }
 
     fun toImage(){
