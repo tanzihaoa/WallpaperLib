@@ -22,8 +22,7 @@
         </service>
         <receiver
             android:name=".widget.base.BaseWidgetProvider"
-            android:exported="false"
-            android:label="Simple Widget">
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>

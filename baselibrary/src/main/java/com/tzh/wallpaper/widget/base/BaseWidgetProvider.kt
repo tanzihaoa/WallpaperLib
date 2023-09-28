@@ -8,7 +8,7 @@ import android.content.Intent
 import android.widget.RemoteViews
 import com.tzh.wallpaper.R
 
-class BaseWidgetProvider: AppWidgetProvider() {
+open class BaseWidgetProvider: AppWidgetProvider() {
     override fun onUpdate(
         context: Context?,
         appWidgetManager: AppWidgetManager?,
@@ -16,11 +16,18 @@ class BaseWidgetProvider: AppWidgetProvider() {
     ) {
         appWidgetIds?.forEach { appWidgetId ->
             val views = RemoteViews(context?.packageName, R.layout.widget_layout)
+            getRemoteViews()?.let {
+
+            }
             val intent = Intent()
             val pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
             views.setOnClickPendingIntent(R.id.widget_textview, pendingIntent)
             appWidgetManager?.updateAppWidget(appWidgetId, views)
         }
+    }
+
+    protected open fun getRemoteViews() : RemoteViews?{
+        return null
     }
 
     companion object{
@@ -31,10 +38,10 @@ class BaseWidgetProvider: AppWidgetProvider() {
             context: Context?,
             appWidgetManager: AppWidgetManager?,
             appWidgetId: Int,
-            imgRes: Int
+            text: String
         ){
             val views = RemoteViews(context!!.packageName, R.layout.widget_layout)
-            views.setImageViewResource(R.id.widget_textview,imgRes)
+            views.setTextViewText(R.id.widget_textview,text)
             appWidgetManager?.updateAppWidget(appWidgetId,views)
         }
     }

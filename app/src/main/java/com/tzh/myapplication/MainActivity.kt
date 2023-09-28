@@ -9,6 +9,7 @@ import com.tzh.myapplication.databinding.ActivityMainBinding
 import com.tzh.wallpaper.util.video.VideoUtil
 import com.tzh.wallpaper.util.wallpaper.WallpaperManagerUtil
 import com.tzh.wallpaper.widget.WidgetUtil
+import com.tzh.wallpaper.widget.base.BaseWidgetProvider
 
 
 class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main) {
@@ -29,7 +30,14 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun toRecycler(){
-        WidgetUtil.addToMainScreen(this)
+        WidgetUtil.addToMainScreen(this, BaseWidgetProvider::class.java)
+    }
+
+    /**
+     * 跟新小组件
+     */
+    fun upDateWidget(){
+        WidgetUtil.update(this,BaseWidgetProvider::class.java)
     }
 
     fun toImage(){
