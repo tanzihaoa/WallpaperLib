@@ -31,7 +31,6 @@ object WidgetUtil {
     /**
      * 添加到主屏幕
      */
-    @RequiresApi(Build.VERSION_CODES.O)
     fun addToMainScreen(context: Context,cls : Class<*>){
         if(ShortcutPermission.check(context)){
             val appWidgetManager = AppWidgetManager.getInstance(context)
@@ -41,9 +40,12 @@ object WidgetUtil {
                 Toast.makeText(context,"组件已经存在",Toast.LENGTH_SHORT).show()
                 return
             }
-
-            if (appWidgetManager.isRequestPinAppWidgetSupported) {
-                appWidgetManager.requestPinAppWidget(myProvider, null, null)
+            if(Build.VERSION.SDK_INT >= 26){
+                if (appWidgetManager.isRequestPinAppWidgetSupported) {
+                    appWidgetManager.requestPinAppWidget(myProvider, null, null)
+                }
+            }else{
+                Toast.makeText(context,"手机版本过低",Toast.LENGTH_SHORT).show()
             }
         }else{
             HintDialog(context,object : HintDialog.HintDialogListener{

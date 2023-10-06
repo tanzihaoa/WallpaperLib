@@ -31,7 +31,6 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
 
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     fun toRecycler(){
         WidgetUtil.addToMainScreen(this, MyWidgetProvider::class.java)
     }
