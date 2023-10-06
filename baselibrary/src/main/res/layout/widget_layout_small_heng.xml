@@ -3,16 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tool="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tool:background="@color/white">
     <ImageView
         android:id="@+id/image_bg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/widget_default_rect"
-        android:adjustViewBounds="true"
-        app:tint="@color/white"/>
+        android:src="@drawable/widget_default_super_shu"
+        android:adjustViewBounds="true"/>
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"

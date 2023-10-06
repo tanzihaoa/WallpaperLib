@@ -8,7 +8,9 @@ import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import com.tzh.wallpaper.widget.base.BaseWidgetProvider
+import com.tzh.wallpaper.dialog.HintDialog
+import com.tzh.wallpaper.util.wallpaper.RuntimeSettingPage
+import com.tzh.wallpaper.util.wallpaper.ShortcutPermission
 
 object WidgetUtil {
 
@@ -18,7 +20,7 @@ object WidgetUtil {
      * 更新小组件，触发组件的onUpdate
      */
     fun update(context: Context,cls : Class<*>){
-        val intent = Intent(context,BaseWidgetProvider::class.java)
+        val intent = Intent(context,cls)
         intent.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
         val bundle = Bundle()
         bundle.putIntArray(AppWidgetManager.EXTRA_APPWIDGET_IDS, getAppWidgetIds(context,cls))
@@ -31,16 +33,28 @@ object WidgetUtil {
      */
     @RequiresApi(Build.VERSION_CODES.O)
     fun addToMainScreen(context: Context,cls : Class<*>){
-        val appWidgetManager = AppWidgetManager.getInstance(context)
-        val myProvider = ComponentName(context,cls)
+        if(ShortcutPermission.check(context)){
+            val appWidgetManager = AppWidgetManager.getInstance(context)
+            val myProvider = ComponentName(context,cls)
 
-        if (getAppWidgetIds(context,BaseWidgetProvider::class.java).isNotEmpty()) {
-            Toast.makeText(context,"组件已经存在",Toast.LENGTH_SHORT).show()
-            return
-        }
+            if (getAppWidgetIds(context,cls).isNotEmpty()) {
+                Toast.makeText(context,"组件已经存在",Toast.LENGTH_SHORT).show()
+                return
+            }
 
-        if (appWidgetManager.isRequestPinAppWidgetSupported) {
-            appWidgetManager.requestPinAppWidget(myProvider, null, null)
+            if (appWidgetManager.isRequestPinAppWidgetSupported) {
+                appWidgetManager.requestPinAppWidget(myProvider, null, null)
+            }
+        }else{
+            HintDialog(context,object : HintDialog.HintDialogListener{
+                override fun cancel() {
+
+                }
+
+                override fun ok() {
+                    RuntimeSettingPage.start(context)
+                }
+            }).show("未打开手机快捷方式权限，确定去打开吗？")
         }
     }
 
