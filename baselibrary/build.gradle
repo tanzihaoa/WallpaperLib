@@ -2,6 +2,7 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'org.greenrobot.greendao'
 }
 
 android {
@@ -39,6 +40,15 @@ configurations.all {
     }
 }
 
+greendao {
+    //指定数据库schema版本号，迁移等操作会用到
+    schemaVersion 1
+    //设置生成数据库文件的目录，默认是在build中，可以将生成的文件放到我们的java目录中
+    targetGenDir 'src/main/java'
+    //设置生成的数据库相关文件的包名，默认为entity所在的包名
+//    daoPackage 'com.greendao.demo.greendao.database'
+}
+
 dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
@@ -55,4 +65,6 @@ dependencies {
 
     //视频播放
     api 'cn.jzvd:jiaozivideoplayer:7.7.0'
+
+    api 'org.greenrobot:greendao:3.3.0'
 }

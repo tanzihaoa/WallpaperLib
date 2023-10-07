@@ -3,6 +3,7 @@ package com.tzh.myapplication.base
 import android.app.Application
 import android.content.Context
 import androidx.multidex.MultiDex
+import com.tzh.wallpaper.dao.daoutils.DaoManager
 
 class MyApplication : Application() {
 
@@ -14,6 +15,8 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         mContext = this
+        DaoManager.getInstance().init(this)
+
     }
 
     /**

@@ -7,8 +7,8 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import com.tzh.wallpaper.dialog.HintDialog
+import com.tzh.wallpaper.util.RomUtils
 import com.tzh.wallpaper.util.wallpaper.RuntimeSettingPage
 import com.tzh.wallpaper.util.wallpaper.ShortcutPermission
 
@@ -43,6 +43,9 @@ object WidgetUtil {
             if(Build.VERSION.SDK_INT >= 26){
                 if (appWidgetManager.isRequestPinAppWidgetSupported) {
                     appWidgetManager.requestPinAppWidget(myProvider, null, null)
+                    if(RomUtils.isXiaomi()){
+                        Toast.makeText(context,"组件添加成功",Toast.LENGTH_SHORT).show()
+                    }
                 }
             }else{
                 Toast.makeText(context,"手机版本过低",Toast.LENGTH_SHORT).show()
@@ -60,9 +63,8 @@ object WidgetUtil {
         }
     }
 
-    private fun getAppWidgetIds(context: Context,cls : Class<*>) :IntArray{
+    private fun getAppWidgetIds(context: Context, cls: Class<*>): IntArray {
         val awm = AppWidgetManager.getInstance(context)
-        val appWidgetIDs: IntArray = awm.getAppWidgetIds(ComponentName(context,cls))
-        return appWidgetIDs
+        return awm.getAppWidgetIds(ComponentName(context, cls))
     }
 }
