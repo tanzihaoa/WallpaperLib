@@ -33,27 +33,22 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
-        <com.tzh.mylibrary.shapeview.ShapeConstraintLayout
+        <com.tzh.mylibrary.shapeview.ShapeTextView
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_margin="16dp"
+            android:text="更新小组件"
+            app:shapeCorners="20dp"
+            app:shapeGradientAngle="BL_TR"
+            android:gravity="center"
             app:shapeBackgroundColor="@color/color_00f3b8"
             app:shapeBorderColor="@color/color_333"
             app:shapeBorderWidth="1dp"
-            app:shapeCorners="20dp">
-            <com.tzh.mylibrary.view.ImageTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:itvText="更新小组件"
-                app:itvShowLocal="TO_TEXT_RIGHT"
-                app:itvImgUnSelectSrc="@drawable/icon_next"
-                app:itvImgWidth="6dp"
-                app:itvImgHeight="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
-        </com.tzh.mylibrary.shapeview.ShapeConstraintLayout>
+            android:onClick="@{()->v.upDateWidget()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <com.tzh.mylibrary.shapeview.ShapeTextView
             android:layout_width="match_parent"

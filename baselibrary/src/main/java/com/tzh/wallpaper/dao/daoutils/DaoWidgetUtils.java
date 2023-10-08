@@ -47,7 +47,12 @@ public class DaoWidgetUtils {
 
     //查询用户
     public List<WidgetDto> daoQueryUserByWidgetId(String widgetId){
-        return userCommonDaoUtils.queryByNativeSql("where widgetId=?", new String[]{widgetId});
+        return userCommonDaoUtils.queryByNativeSql("where widget_id=?", new String[]{widgetId});
+    }
+
+    //查询用户
+    public List<WidgetDto> daoQueryUserByToken(String token){
+        return userCommonDaoUtils.queryByNativeSql("where token=?", new String[]{token});
     }
 
 

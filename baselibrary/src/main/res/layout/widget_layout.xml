@@ -14,12 +14,25 @@
         android:adjustViewBounds="true"
         app:tint="@color/white"/>
     <TextView
+        android:id="@+id/tv_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        android:text="16"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignBottom="@+id/image_bg"
+        android:gravity="center"/>
+    <TextView
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="我的应用"
+        android:gravity="center"
         android:textSize="12sp"
-        android:textColor="@color/color_333"
+        android:textColor="@color/white"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/image_bg"/>
+        android:layout_below="@+id/image_bg"
+        android:layout_alignParentBottom="true"/>
 </RelativeLayout>

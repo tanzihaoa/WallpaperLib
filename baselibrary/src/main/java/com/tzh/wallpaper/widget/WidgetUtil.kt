@@ -7,8 +7,11 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
+import com.tzh.wallpaper.dao.daoutils.DaoWidgetUtils
+import com.tzh.wallpaper.dao.dto.WidgetDto
 import com.tzh.wallpaper.dialog.HintDialog
 import com.tzh.wallpaper.util.RomUtils
+import com.tzh.wallpaper.util.toDefault
 import com.tzh.wallpaper.util.wallpaper.RuntimeSettingPage
 import com.tzh.wallpaper.util.wallpaper.ShortcutPermission
 
@@ -31,7 +34,7 @@ object WidgetUtil {
     /**
      * 添加到主屏幕
      */
-    fun addToMainScreen(context: Context,cls : Class<*>){
+    fun addToMainScreen(context: Context, dto : WidgetDto, cls : Class<*>){
         if(ShortcutPermission.check(context)){
             val appWidgetManager = AppWidgetManager.getInstance(context)
             val myProvider = ComponentName(context,cls)
@@ -39,6 +42,12 @@ object WidgetUtil {
             if (getAppWidgetIds(context,cls).isNotEmpty()) {
                 Toast.makeText(context,"组件已经存在",Toast.LENGTH_SHORT).show()
                 return
+            }
+
+            if(DaoWidgetUtils.getInstance().daoQueryUserByToken(dto.token)?.size.toDefault(0) == 0){
+                DaoWidgetUtils.getInstance().daoInsertDefaultUser(dto)
+            }else{
+                DaoWidgetUtils.getInstance().updateUser(dto)
             }
             if(Build.VERSION.SDK_INT >= 26){
                 if (appWidgetManager.isRequestPinAppWidgetSupported) {

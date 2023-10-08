@@ -11,7 +11,9 @@ public class WidgetDto {
 
     public String name;
 
-    public String widgetId;
+    public String token;
+
+    public String widget_id;
     public String text1;
     public String text2;
     public String text3;
@@ -33,15 +35,16 @@ public class WidgetDto {
     public int num9;
     public int num10;
 
-    @Generated(hash = 1955827517)
-    public WidgetDto(Long id, String name, String widgetId, String text1,
-            String text2, String text3, String text4, String text5, String text6,
-            String text7, String text8, String text9, String text10, int num1,
-            int num2, int num3, int num4, int num5, int num6, int num7, int num8,
-            int num9, int num10) {
+    @Generated(hash = 199081534)
+    public WidgetDto(Long id, String name, String token, String widget_id,
+            String text1, String text2, String text3, String text4, String text5,
+            String text6, String text7, String text8, String text9, String text10,
+            int num1, int num2, int num3, int num4, int num5, int num6, int num7,
+            int num8, int num9, int num10) {
         this.id = id;
         this.name = name;
-        this.widgetId = widgetId;
+        this.token = token;
+        this.widget_id = widget_id;
         this.text1 = text1;
         this.text2 = text2;
         this.text3 = text3;
@@ -82,14 +85,6 @@ public class WidgetDto {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getWidgetId() {
-        return this.widgetId;
-    }
-
-    public void setWidgetId(String widgetId) {
-        this.widgetId = widgetId;
     }
 
     public String getText1() {
@@ -250,5 +245,21 @@ public class WidgetDto {
 
     public void setNum10(int num10) {
         this.num10 = num10;
+    }
+
+    public String getToken() {
+        return this.token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getWidget_id() {
+        return this.widget_id;
+    }
+
+    public void setWidget_id(String widget_id) {
+        this.widget_id = widget_id;
     }
 }

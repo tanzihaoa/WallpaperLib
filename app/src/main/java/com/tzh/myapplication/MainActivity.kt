@@ -7,6 +7,9 @@ import com.tzh.myapplication.activity.VideoActivity
 import com.tzh.myapplication.base.AppBaseActivity
 import com.tzh.myapplication.databinding.ActivityMainBinding
 import com.tzh.myapplication.widget.MyWidgetProvider
+import com.tzh.myapplication.widget.WidgetType
+import com.tzh.wallpaper.dao.daoutils.DaoWidgetUtils
+import com.tzh.wallpaper.dao.dto.WidgetDto
 import com.tzh.wallpaper.dialog.HintDialog
 import com.tzh.wallpaper.util.video.VideoUtil
 import com.tzh.wallpaper.util.wallpaper.RuntimeSettingPage
@@ -32,14 +35,25 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
     }
 
     fun toRecycler(){
-        WidgetUtil.addToMainScreen(this, MyWidgetProvider::class.java)
+        val dto = WidgetDto()
+        dto.token = WidgetType.MyWidgetProvider
+        dto.num1 = 1
+        dto.name = "我的应用"
+        WidgetUtil.addToMainScreen(this,dto, MyWidgetProvider::class.java)
     }
 
     /**
      * 更新小组件
      */
     fun upDateWidget(){
-        WidgetUtil.update(this,MyWidgetProvider::class.java)
+        val list = DaoWidgetUtils.getInstance().daoQueryUserByToken(WidgetType.MyWidgetProvider)
+        if(list.size > 0){
+            val dto = list[0]
+            dto.name = "我的组件"
+            dto.num1 = dto.num1 + 1
+            DaoWidgetUtils.getInstance().updateUser(dto)
+            WidgetUtil.update(this,MyWidgetProvider::class.java)
+        }
     }
 
     fun toImage(){
