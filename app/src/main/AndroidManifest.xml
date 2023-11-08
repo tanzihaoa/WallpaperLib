@@ -27,12 +27,9 @@
         <meta-data
             android:name="TD_APP_ID"
             android:value="0A5C2E5645E94669A862D55A3BB5D37F" />
-        <!-- 适配华为（huawei）刘海屏 -->
         <meta-data
             android:name="TD_CHANNEL_ID"
             android:value="debug" />
-
-        <!-- 适配小米（xiaomi）刘海屏 -->
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="default" />
@@ -74,6 +71,10 @@
         <activity android:name=".activity.VideoActivity"
             android:screenOrientation="portrait"
             android:exported="true" />
+
+        <activity android:name=".activity.SpliceVideoActivity"
+            android:screenOrientation="portrait"
+            android:exported="true"  />
 
         <receiver
             android:name=".widget.MyWidgetProvider"

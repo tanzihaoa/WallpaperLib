@@ -3,6 +3,7 @@ package com.tzh.myapplication
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
+import com.tzh.myapplication.activity.SpliceVideoActivity
 import com.tzh.myapplication.activity.VideoActivity
 import com.tzh.myapplication.base.AppBaseActivity
 import com.tzh.myapplication.databinding.ActivityMainBinding
@@ -67,5 +68,9 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
 
     fun saveVideo(){
         VideoUtil.saveVideo(this,url)
+    }
+
+    fun spliceVideo(){
+        SpliceVideoActivity.start(this)
     }
 }
