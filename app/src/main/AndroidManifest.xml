@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.tzh.myapplication">
+    package="com.tzh.wallpaper">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="miui.permission.READ_STEPS" />
     <uses-permission android:name="android.permission.BODY_SENSORS" />
@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".base.MyApplication"
+        android:name="com.tzh.wallpaper.base.MyApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -44,7 +44,7 @@
             android:value="portrait|landscape" /> <!-- Required SDK 核心功能 -->
 
         <activity
-            android:name="com.tzh.myapplication.MainActivity"
+            android:name="com.tzh.wallpaper.MainActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity"
             android:theme="@style/AppBaseTheme"
@@ -68,16 +68,16 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.VideoActivity"
+        <activity android:name="com.tzh.wallpaper.activity.VideoActivity"
             android:screenOrientation="portrait"
             android:exported="true" />
 
-        <activity android:name=".activity.SpliceVideoActivity"
+        <activity android:name="com.tzh.wallpaper.activity.SpliceVideoActivity"
             android:screenOrientation="portrait"
             android:exported="true"  />
 
         <receiver
-            android:name=".widget.MyWidgetProvider"
+            android:name="com.tzh.wallpaper.widget.MyWidgetProvider"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -86,6 +86,16 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/simple_app_widget_info" />
         </receiver>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.tzh.wallpaper.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>

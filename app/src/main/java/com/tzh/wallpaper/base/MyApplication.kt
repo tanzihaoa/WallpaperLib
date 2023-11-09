@@ -1,4 +1,4 @@
-package com.tzh.myapplication.base
+package com.tzh.wallpaper.base
 
 import android.app.Application
 import android.content.Context

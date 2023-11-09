@@ -1,23 +1,17 @@
-package com.tzh.myapplication
+package com.tzh.wallpaper
 
-import android.os.Build
 import android.util.Log
-import androidx.annotation.RequiresApi
-import com.tzh.myapplication.activity.SpliceVideoActivity
-import com.tzh.myapplication.activity.VideoActivity
-import com.tzh.myapplication.base.AppBaseActivity
-import com.tzh.myapplication.databinding.ActivityMainBinding
-import com.tzh.myapplication.widget.MyWidgetProvider
-import com.tzh.myapplication.widget.WidgetType
+import com.tzh.wallpaper.activity.SpliceVideoActivity
+import com.tzh.wallpaper.activity.VideoActivity
+import com.tzh.wallpaper.base.AppBaseActivity
+import com.tzh.wallpaper.databinding.ActivityMainBinding
+import com.tzh.wallpaper.widget.MyWidgetProvider
+import com.tzh.wallpaper.widget.WidgetType
 import com.tzh.wallpaper.dao.daoutils.DaoWidgetUtils
 import com.tzh.wallpaper.dao.dto.WidgetDto
-import com.tzh.wallpaper.dialog.HintDialog
 import com.tzh.wallpaper.util.video.VideoUtil
-import com.tzh.wallpaper.util.wallpaper.RuntimeSettingPage
-import com.tzh.wallpaper.util.wallpaper.ShortcutPermission
 import com.tzh.wallpaper.util.wallpaper.WallpaperManagerUtil
 import com.tzh.wallpaper.widget.WidgetUtil
-import com.tzh.wallpaper.widget.base.BaseWidgetProvider
 
 
 class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main) {

@@ -1,4 +1,4 @@
-package com.tzh.myapplication.widget
+package com.tzh.wallpaper.widget
 
 import androidx.annotation.StringDef
 

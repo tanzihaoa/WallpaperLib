@@ -9,7 +9,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.tzh.demo"
+        applicationId "com.tzh.wallpaper"
         minSdk 24
         versionCode 1
         versionName "1.0"
@@ -109,6 +109,9 @@ dependencies {
     api 'androidx.multidex:multidex:2.0.1'
 
     api 'com.github.tanzihaoa:ModelLib:v1.1.0'
+
+    implementation 'top.zibin:Luban:1.1.8'
+    implementation 'com.github.HuanTanSheng:EasyPhotos:3.1.5'
 
     implementation project(':baselibrary')
 }

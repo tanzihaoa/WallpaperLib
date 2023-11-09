@@ -1,4 +1,4 @@
-package com.tzh.myapplication.view
+package com.tzh.wallpaper.view
 
 import android.content.Context
 import android.graphics.Canvas

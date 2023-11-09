@@ -1,13 +1,13 @@
-package com.tzh.myapplication.activity
+package com.tzh.wallpaper.activity
 
 import android.content.Context
 import android.content.Intent
 import cn.jzvd.JZDataSource
 import cn.jzvd.Jzvd
 import cn.jzvd.JzvdStd
-import com.tzh.myapplication.R
-import com.tzh.myapplication.base.AppBaseActivity
-import com.tzh.myapplication.databinding.ActivityVideoBinding
+import com.tzh.wallpaper.R
+import com.tzh.wallpaper.base.AppBaseActivity
+import com.tzh.wallpaper.databinding.ActivityVideoBinding
 
 class VideoActivity : AppBaseActivity<ActivityVideoBinding>(R.layout.activity_video) {
 

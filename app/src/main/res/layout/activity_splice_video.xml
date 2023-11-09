@@ -3,7 +3,7 @@
     <data>
         <variable
             name="v"
-            type="com.tzh.myapplication.MainActivity" />
+            type="com.tzh.wallpaper.MainActivity" />
     </data>
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"

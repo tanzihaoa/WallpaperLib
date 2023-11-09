@@ -1,4 +1,4 @@
-package com.tzh.myapplication
+package com.tzh.wallpaper
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

@@ -1,4 +1,4 @@
-package com.tzh.myapplication
+package com.tzh.wallpaper
 
 import org.junit.Test
 

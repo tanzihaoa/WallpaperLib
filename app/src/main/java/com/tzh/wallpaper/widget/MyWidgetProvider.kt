@@ -1,4 +1,4 @@
-package com.tzh.myapplication.widget
+package com.tzh.wallpaper.widget
 
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
@@ -8,7 +8,6 @@ import android.widget.RemoteViews
 import com.tzh.wallpaper.R
 import com.tzh.wallpaper.dao.daoutils.DaoWidgetUtils
 import com.tzh.wallpaper.dao.dto.WidgetDto
-import com.tzh.wallpaper.widget.WidgetUtil
 import com.tzh.wallpaper.widget.base.BaseWidgetProvider
 
 class MyWidgetProvider : BaseWidgetProvider() {
