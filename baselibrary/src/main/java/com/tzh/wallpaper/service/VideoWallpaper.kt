@@ -7,7 +7,6 @@ import android.content.Intent
 import android.media.MediaPlayer
 import android.service.wallpaper.WallpaperService
 import android.text.TextUtils
-import android.util.Log
 import android.view.SurfaceHolder
 import java.io.IOException
 
@@ -32,7 +31,7 @@ class VideoWallpaper : WallpaperService() {
             val intent = Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER)
             intent.putExtra(
                 WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
-                ComponentName(context,VideoWallpaper::class.java)
+                ComponentName(context, VideoWallpaper::class.java)
             )
             context.startActivity(intent)
         }

@@ -1,4 +1,4 @@
-package com.tzh.wallpaper.util.img;
+package com.tzh.video.util.img;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;

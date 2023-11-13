@@ -1,12 +1,12 @@
-package com.tzh.wallpaper
+package com.tzh.video
 
 import android.util.Log
-import com.tzh.wallpaper.activity.SpliceVideoActivity
-import com.tzh.wallpaper.activity.VideoActivity
-import com.tzh.wallpaper.base.AppBaseActivity
-import com.tzh.wallpaper.databinding.ActivityMainBinding
-import com.tzh.wallpaper.widget.MyWidgetProvider
-import com.tzh.wallpaper.widget.WidgetType
+import com.tzh.video.activity.SpliceVideoActivity
+import com.tzh.video.activity.VideoActivity
+import com.tzh.video.base.AppBaseActivity
+import com.tzh.video.databinding.ActivityMainBinding
+import com.tzh.video.widget.MyWidgetProvider
+import com.tzh.video.widget.WidgetType
 import com.tzh.wallpaper.dao.daoutils.DaoWidgetUtils
 import com.tzh.wallpaper.dao.dto.WidgetDto
 import com.tzh.wallpaper.util.video.VideoUtil

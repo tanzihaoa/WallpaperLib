@@ -1,4 +1,4 @@
-package com.tzh.wallpaper.util;
+package com.tzh.video.util;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -9,8 +9,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.tzh.wallpaper.R;
-import com.tzh.wallpaper.base.MyApplication;
+import com.tzh.video.R;
+import com.tzh.video.base.MyApplication;
 
 public class ToastUtil {
     private static Toast toast;

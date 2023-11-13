@@ -1,4 +1,4 @@
-package com.tzh.wallpaper.widget
+package com.tzh.video.widget
 
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
@@ -9,6 +9,7 @@ import com.tzh.wallpaper.R
 import com.tzh.wallpaper.dao.daoutils.DaoWidgetUtils
 import com.tzh.wallpaper.dao.dto.WidgetDto
 import com.tzh.wallpaper.widget.base.BaseWidgetProvider
+import com.tzh.wallpaper.widget.WidgetUtil
 
 class MyWidgetProvider : BaseWidgetProvider() {
     override fun onUpdate(

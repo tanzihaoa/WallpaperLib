@@ -3,7 +3,7 @@
     <data>
         <variable
             name="v"
-            type="com.tzh.wallpaper.MainActivity" />
+            type="com.tzh.video.MainActivity" />
     </data>
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"

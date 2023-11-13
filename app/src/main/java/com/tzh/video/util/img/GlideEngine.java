@@ -1,4 +1,4 @@
-package com.tzh.wallpaper.util.img;
+package com.tzh.video.util.img;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 

@@ -99,7 +99,8 @@ object BitmapUtil {
         val rect = Rect(0, 0, bitmap.width, bitmap.height)
         val rectF = RectF(rect)
         canvas?.drawARGB(0, 0, 0, 0)
-        canvas?.drawRoundRect(rectF, DpToUtil.dip2px(context,cornerRadius).toFloat(), DpToUtil.dip2px(context,cornerRadius).toFloat(), paint)
+        canvas?.drawRoundRect(rectF, DpToUtil.dip2px(context, cornerRadius)
+            .toFloat(), DpToUtil.dip2px(context, cornerRadius).toFloat(), paint)
         paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
         canvas?.drawBitmap(bitmap, rect, rect, paint)
         return output?.let { getBitmapByBg(context,it, Color.parseColor("#00000000")) }
@@ -179,7 +180,7 @@ object BitmapUtil {
      * 保存图片
      */
     fun saveUrl(context: Context, url : String){
-        urlToBitmap(context,url,object : BitmapListener{
+        urlToBitmap(context,url,object : BitmapListener {
             override fun sure(bitmap: Bitmap) {
                 saveBitmap(context,bitmap)
             }

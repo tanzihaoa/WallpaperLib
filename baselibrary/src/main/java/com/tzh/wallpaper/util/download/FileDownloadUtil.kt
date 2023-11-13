@@ -182,20 +182,20 @@ class FileDownloadUtil(var context : Context,@DownloadType val type : String) {
     //初始化文件后缀名
     private fun initFileName(url : String){
         when(type){
-            DownloadType.File->{
+            DownloadType.File ->{
                 FILE_OK = url.substring(url.lastIndexOf("."))
             }
-            DownloadType.Image->{
+            DownloadType.Image ->{
                 FILE_OK = if(url.indexOf(".jpg")>0){
                     ".jpg"
                 }else{
                     ".jpg"
                 }
             }
-            DownloadType.MP3->{
+            DownloadType.MP3 ->{
                 FILE_OK = ".mp3"
             }
-            DownloadType.MP4->{
+            DownloadType.MP4 ->{
                 FILE_OK = ".mp4"
             }
         }

@@ -1,4 +1,4 @@
-package com.tzh.wallpaper.util.img;
+package com.tzh.video.util.img;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.huantansheng.easyphotos.EasyPhotos;
 import com.huantansheng.easyphotos.callback.SelectCallback;
 import com.huantansheng.easyphotos.models.album.entity.Photo;
-import com.tzh.wallpaper.util.ToastUtil;
+import com.tzh.video.util.ToastUtil;
 import com.tzh.mylibrary.util.GsonUtil;
 
 import java.io.File;
@@ -35,7 +35,7 @@ public class CameraUtil {
 
     private static void createAlbumVideo(AppCompatActivity activity,int num,onSelectCallback callback){
         EasyPhotos.createAlbum(activity, false, false, GlideEngine.getInstance())
-                .setFileProviderAuthority("com.tzh.myapplication.fileprovider")
+                .setFileProviderAuthority("com.tzh.video.fileprovider")
                 .complexSelector(true,num,0)
                 .onlyVideo()
 //                .complexSelector(true,1,num>0?num:1)//参数说明：是否只能选择单类型，视频数，图片数。
@@ -71,7 +71,7 @@ public class CameraUtil {
      */
     public static void createAlbumComplex(AppCompatActivity activity,int num,onSelectCallback callback){
         EasyPhotos.createAlbum(activity, true, false, GlideEngine.getInstance())
-                .setFileProviderAuthority("com.tzh.myapplication.fileprovider")
+                .setFileProviderAuthority("com.tzh.video.fileprovider")
 //                .setCount(num>0?num:1)
                 .complexSelector(true,1,num>0?num:1)//参数说明：是否只能选择单类型，视频数，图片数。
                 .start(new SelectCallback() {
@@ -196,5 +196,18 @@ public class CameraUtil {
     private static String getPath(Context context) {
 
         return KtFileUtil.INSTANCE.getImageCacheFolder(context).getAbsolutePath();
+    }
+
+    /**
+     * Photo 数组转 String 数组
+     * @param list
+     */
+    public static ArrayList<String> photoToString(List<Photo> list){
+        ArrayList<String> mList = new ArrayList<>();
+        for (Photo photo : list){
+            mList.add(photo.path);
+        }
+
+        return mList;
     }
 }

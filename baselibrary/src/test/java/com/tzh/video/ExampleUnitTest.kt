@@ -1,4 +1,4 @@
-package com.tzh.wallpaper
+package com.tzh.video
 
 import org.junit.Test
 

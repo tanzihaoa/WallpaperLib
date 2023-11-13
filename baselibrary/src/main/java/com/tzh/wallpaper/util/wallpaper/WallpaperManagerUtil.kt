@@ -222,7 +222,7 @@ object WallpaperManagerUtil {
         val intent = Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER)
         intent.putExtra(
             WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
-            ComponentName(context,VideoWallpaper::class.java)
+            ComponentName(context, VideoWallpaper::class.java)
         )
         context.startActivity(intent)
     }

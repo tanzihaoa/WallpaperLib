@@ -1,9 +1,6 @@
 package com.tzh.wallpaper.util.wallpaper;
 
-import android.content.ContentResolver;
 import android.content.Context;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
 import java.lang.annotation.Retention;

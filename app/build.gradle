@@ -9,7 +9,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.tzh.wallpaper"
+        applicationId "com.tzh.video"
         minSdk 24
         versionCode 1
         versionName "1.0"

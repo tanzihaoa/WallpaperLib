@@ -1,5 +1,7 @@
 package com.tzh.wallpaper.util.video;
 
+import android.util.Log;
+
 import com.coremedia.iso.boxes.Container;
 import com.googlecode.mp4parser.authoring.Movie;
 import com.googlecode.mp4parser.authoring.Track;
@@ -11,6 +13,7 @@ import com.googlecode.mp4parser.authoring.tracks.CroppedTrack;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,6 +21,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Mp4ParserUtils {
+    private final static String PREFIX_VIDEO_HANDLER = "vide";
+    private final static String PREFIX_AUDIO_HANDLER = "soun";
+
     /**
      * 合并视频
      *
@@ -206,5 +212,53 @@ public class Mp4ParserUtils {
             previous = timeOfSyncSample;
         }
         return timeOfSyncSamples[timeOfSyncSamples.length - 1];
+    }
+
+    /**
+     * 合并视频
+     * @param inputVideos
+     * @param outputPath
+     * @throws IOException
+     */
+    public static void mergeVideos(List<String> inputVideos, String outputPath){
+        List<Movie> inputMovies = new ArrayList<>();
+
+
+        try {
+            for (String input : inputVideos) {
+                inputMovies.add(MovieCreator.build(input));
+            }
+
+            List<Track> videoTracks = new LinkedList<>();
+            List<Track> audioTracks = new LinkedList<>();
+
+            for (Movie m : inputMovies) {
+                for (Track t : m.getTracks()) {
+                    if (PREFIX_AUDIO_HANDLER.equals(t.getHandler())) {
+                        audioTracks.add(t);
+                    }
+                    if (PREFIX_VIDEO_HANDLER.equals(t.getHandler())) {
+                        videoTracks.add(t);
+                    }
+                }
+            }
+
+            Movie outputMovie = new Movie();
+            if (audioTracks.size() > 0) {
+                outputMovie.addTrack(new AppendTrack(audioTracks.toArray(new Track[audioTracks.size()])));
+            }
+            if (videoTracks.size() > 0) {
+                outputMovie.addTrack(new AppendTrack(videoTracks.toArray(new Track[videoTracks.size()])));
+            }
+
+            Container out = new DefaultMp4Builder().build(outputMovie);
+
+            FileChannel fc = new RandomAccessFile(outputPath, "rw").getChannel();
+            out.writeContainer(fc);
+            fc.close();
+            Log.e("video=====","成功");
+        }catch (IOException e){
+            Log.e("video=====","IOException错误");
+        }
     }
 }

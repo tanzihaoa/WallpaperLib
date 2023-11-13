@@ -1,4 +1,4 @@
-package com.tzh.wallpaper.base
+package com.tzh.video.base
 
 import android.content.Context
 import android.os.Bundle

@@ -1,4 +1,4 @@
-package com.tzh.wallpaper.widget
+package com.tzh.video.widget
 
 import androidx.annotation.StringDef
 

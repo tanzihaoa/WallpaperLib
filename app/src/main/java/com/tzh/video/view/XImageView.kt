@@ -1,4 +1,4 @@
-package com.tzh.wallpaper.view
+package com.tzh.video.view
 
 import android.content.Context
 import android.graphics.Canvas
