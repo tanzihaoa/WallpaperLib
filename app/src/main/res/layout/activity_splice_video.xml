@@ -44,6 +44,15 @@
             android:gravity="center"
             android:text="选择视频内容"
             android:layout_margin="16dp"/>
+        <com.tzh.mylibrary.shapeview.ShapeTextView
+            android:id="@+id/tv_select_immobilization"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            app:shapeBackgroundColor="@color/color_f4f4f4"
+            app:shapeCorners="12dp"
+            android:gravity="center"
+            android:text="选择固定视频内容"
+            android:layout_margin="16dp"/>
         <com.tzh.mylibrary.shapeview.ShapeEditText
             android:id="@+id/et_num"
             android:layout_width="match_parent"
@@ -70,6 +79,6 @@
             android:layout_margin="16dp"
             android:gravity="center"
             android:text="生成视频"
-            android:onClick="@{()->activity.startVideo()}"/>
+            android:onClick="@{()->activity.startVideo(true)}"/>
     </LinearLayout>
 </layout>

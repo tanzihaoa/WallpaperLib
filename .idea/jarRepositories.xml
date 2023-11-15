@@ -61,5 +61,10 @@
       <option name="name" value="maven4" />
       <option name="url" value="https://gitee.com/YuanArcheanNovice/archean_android_lib/raw/master/maven" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven8" />
+      <option name="name" value="maven8" />
+      <option name="url" value="https://raw.githubusercontent.com/Commit451/maven-repo/master/" />
+    </remote-repository>
   </component>
 </project>

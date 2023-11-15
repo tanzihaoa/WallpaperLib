@@ -3,6 +3,7 @@ package com.tzh.video.util.img
 import android.content.Context
 import com.tzh.mylibrary.util.AppPathManager
 import com.tzh.video.base.MyApplication
+import com.tzh.video.util.DateTime
 import java.io.File
 import java.util.Random
 
@@ -23,7 +24,7 @@ object KtFileUtil {
      *
      */
     fun getVideoCacheFolder(context : Context): File? {
-        val file = context.getExternalFilesDir("video/")
+        val file = context.getExternalFilesDir("video/${DateTime.getInstance().nowTime}/")
         AppPathManager.ifFolderExit(file?.absolutePath)
         return file
     }

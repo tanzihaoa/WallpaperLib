@@ -33,6 +33,7 @@ allprojects {
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 
         maven { url 'https://repo1.maven.org/maven2/' }
+
     }
     gradle.projectsEvaluated {
         tasks.withType(JavaCompile) {

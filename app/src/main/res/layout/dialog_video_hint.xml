@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout >
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_shape"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="12dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="提醒"
+            android:textColor="@color/color_333"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:text="提醒"
+            android:textColor="@color/color_50333"
+            android:gravity="center"
+            android:textSize="16sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="22dp">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_ok"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_dialog_sure"
+                android:textSize="16sp"
+                android:text="确定"
+                android:gravity="center"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+    </LinearLayout>
+</layout>
