@@ -100,8 +100,7 @@ class SpliceVideoActivity : AppBaseActivity<ActivitySpliceVideoBinding>(R.layout
         EasyPhotos.createAlbum(this, false, false, GlideEngine.getInstance())
             .setFileProviderAuthority("com.tzh.video.fileprovider")
             .setSelectedPhotos(if(type == 1) headList else if(type == 2) bodyList else if(type == 3) contentList  else immobilizationList)
-            .complexSelector(true, 99, 0)
-            .onlyVideo() //                .complexSelector(true,1,num>0?num:1)//参数说明：是否只能选择单类型，视频数，图片数。
+            .complexSelector(true, 99, 99)
             .start(object : SelectCallback() {
                 override fun onResult(photos: ArrayList<Photo>, isOriginal: Boolean) {
                     when (type){
