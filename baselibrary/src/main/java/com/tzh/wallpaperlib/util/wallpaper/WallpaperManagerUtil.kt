@@ -25,21 +25,11 @@ object WallpaperManagerUtil {
      * 设置壁纸
      */
     fun setWallpaper(context: AppCompatActivity, url : String){
-        PermissionXUtil.requestAnyPermission(context, mutableListOf<String>().apply {
-            add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        },object : OnPermissionCallBackListener {
-            override fun onAgree() {
-                val manager = context.getSystemService(Context.WALLPAPER_SERVICE) as WallpaperManager
-                BitmapUtil.urlToBitmap(context,url,object : BitmapUtil.BitmapListener{
-                    override fun sure(bitmap: Bitmap) {
-                        manager.setBitmap(bitmap)
-                        Toast.makeText(context,"设置成功",Toast.LENGTH_SHORT).show()
-                    }
-                })
-            }
-
-            override fun onDisAgree() {
-
+        val manager = context.getSystemService(Context.WALLPAPER_SERVICE) as WallpaperManager
+        BitmapUtil.urlToBitmap(context,url,object : BitmapUtil.BitmapListener{
+            override fun sure(bitmap: Bitmap) {
+                manager.setBitmap(bitmap)
+                Toast.makeText(context,"设置成功",Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -48,25 +38,15 @@ object WallpaperManagerUtil {
      * 设置壁纸
      */
     fun setWallpaper(fragment : Fragment, url : String){
-        PermissionXUtil.requestAnyPermission(fragment, mutableListOf<String>().apply {
-            add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        },object : OnPermissionCallBackListener {
-            override fun onAgree() {
-                val manager = fragment.activity?.getSystemService(Context.WALLPAPER_SERVICE) as WallpaperManager
-                fragment.context?.let {
-                    BitmapUtil.urlToBitmap(it,url,object : BitmapUtil.BitmapListener{
-                        override fun sure(bitmap: Bitmap) {
-                            manager.setBitmap(bitmap)
-                            Toast.makeText(it,"设置成功",Toast.LENGTH_SHORT).show()
-                        }
-                    })
+        val manager = fragment.activity?.getSystemService(Context.WALLPAPER_SERVICE) as WallpaperManager
+        fragment.context?.let {
+            BitmapUtil.urlToBitmap(it,url,object : BitmapUtil.BitmapListener{
+                override fun sure(bitmap: Bitmap) {
+                    manager.setBitmap(bitmap)
+                    Toast.makeText(it,"设置成功",Toast.LENGTH_SHORT).show()
                 }
-            }
-
-            override fun onDisAgree() {
-
-            }
-        })
+            })
+        }
     }
 
     /**
@@ -76,32 +56,22 @@ object WallpaperManagerUtil {
      */
     fun setVideoWallpaper(fragment : Fragment, url : String,isVolume : Boolean = true){
         fragment.context?.apply {
-            PermissionXUtil.requestAnyPermission(fragment, mutableListOf<String>().apply {
-                add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            },object : OnPermissionCallBackListener {
-                override fun onAgree() {
-                    val fileDownloadUtil = FileDownloadUtil(this@apply,DownloadType.MP4)
-                    if(fileDownloadUtil.isHaveFile(url)){
-                        Log.e("setVideoWallpaper=====1",fileDownloadUtil.getPath(url))
+            val fileDownloadUtil = FileDownloadUtil(this@apply,DownloadType.MP4)
+            if(fileDownloadUtil.isHaveFile(url)){
+                Log.e("setVideoWallpaper=====1",fileDownloadUtil.getPath(url))
+                VideoWallpaper.setToWallPaper(this@apply,fileDownloadUtil.getPath(url),isVolume)
+            }else{
+                fileDownloadUtil.onDownloadFile(url,object : FileDownloadUtil.OnDownloadListener(){
+                    override fun onSuccess(file: File) {
+                        Log.e("setVideoWallpaper=====2",fileDownloadUtil.getPath(url))
                         VideoWallpaper.setToWallPaper(this@apply,fileDownloadUtil.getPath(url),isVolume)
-                    }else{
-                        fileDownloadUtil.onDownloadFile(url,object : FileDownloadUtil.OnDownloadListener(){
-                            override fun onSuccess(file: File) {
-                                Log.e("setVideoWallpaper=====2",fileDownloadUtil.getPath(url))
-                                VideoWallpaper.setToWallPaper(this@apply,fileDownloadUtil.getPath(url),isVolume)
-                            }
-
-                            override fun onError(throwable: Throwable) {
-
-                            }
-                        })
                     }
-                }
 
-                override fun onDisAgree() {
+                    override fun onError(throwable: Throwable) {
 
-                }
-            })
+                    }
+                })
+            }
         }
     }
 
@@ -114,30 +84,20 @@ object WallpaperManagerUtil {
         fragment.context?.let {
             VolumeDialog(it,object : VolumeDialog.VolumeListener{
                 override fun volume(volume: Boolean) {
-                    PermissionXUtil.requestAnyPermission(fragment, mutableListOf<String>().apply {
-                        add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    },object : OnPermissionCallBackListener {
-                        override fun onAgree() {
-                            val fileDownloadUtil = FileDownloadUtil(it,DownloadType.MP4)
-                            if(fileDownloadUtil.isHaveFile(url)){
+                    val fileDownloadUtil = FileDownloadUtil(it,DownloadType.MP4)
+                    if(fileDownloadUtil.isHaveFile(url)){
+                        VideoWallpaper.setToWallPaper(it,fileDownloadUtil.getPath(url),volume)
+                    }else{
+                        fileDownloadUtil.onDownloadFile(url,object : FileDownloadUtil.OnDownloadListener(){
+                            override fun onSuccess(file: File) {
                                 VideoWallpaper.setToWallPaper(it,fileDownloadUtil.getPath(url),volume)
-                            }else{
-                                fileDownloadUtil.onDownloadFile(url,object : FileDownloadUtil.OnDownloadListener(){
-                                    override fun onSuccess(file: File) {
-                                        VideoWallpaper.setToWallPaper(it,fileDownloadUtil.getPath(url),volume)
-                                    }
-
-                                    override fun onError(throwable: Throwable) {
-
-                                    }
-                                })
                             }
-                        }
 
-                        override fun onDisAgree() {
+                            override fun onError(throwable: Throwable) {
 
-                        }
-                    })
+                            }
+                        })
+                    }
                 }
             }).show()
         }
@@ -149,18 +109,14 @@ object WallpaperManagerUtil {
      * @param isVolume 是否有声音
      */
     fun setVideoWallpaper(activity : AppCompatActivity, url : String,isVolume : Boolean = true){
-        PermissionXUtil.requestAnyPermission(activity, mutableListOf<String>().apply {
-            add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        },object : OnPermissionCallBackListener {
-            override fun onAgree() {
-                val fileDownloadUtil = FileDownloadUtil(activity,DownloadType.MP4)
-                if(fileDownloadUtil.isHaveFile(url)){
+        val fileDownloadUtil = FileDownloadUtil(activity,DownloadType.MP4)
+        if(fileDownloadUtil.isHaveFile(url)){
+            VideoWallpaper.setToWallPaper(activity,fileDownloadUtil.getPath(url),isVolume)
+        }else{
+            fileDownloadUtil.onDownloadFile(url,object : FileDownloadUtil.OnDownloadListener(){
+                override fun onSuccess(file: File) {
                     VideoWallpaper.setToWallPaper(activity,fileDownloadUtil.getPath(url),isVolume)
-                }else{
-                    fileDownloadUtil.onDownloadFile(url,object : FileDownloadUtil.OnDownloadListener(){
-                        override fun onSuccess(file: File) {
-                            VideoWallpaper.setToWallPaper(activity,fileDownloadUtil.getPath(url),isVolume)
-                        }
+                }
 
                         override fun onError(throwable: Throwable) {
 

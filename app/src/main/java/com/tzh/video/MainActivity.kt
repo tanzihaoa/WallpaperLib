@@ -52,7 +52,7 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
     }
 
     fun toImage(){
-        VideoActivity.start(this)
+        VideoActivity.start(this,"https://node1.olelive.com:6443/live/CCTV1HD/hls.m3u8")
     }
 
     fun start(){

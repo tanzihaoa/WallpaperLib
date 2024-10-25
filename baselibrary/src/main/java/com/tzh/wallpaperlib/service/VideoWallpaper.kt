@@ -12,7 +12,6 @@ import java.io.IOException
 
 class VideoWallpaper : WallpaperService() {
 
-
     /**
      * 设置壁纸
      * @param context
@@ -23,11 +22,6 @@ class VideoWallpaper : WallpaperService() {
         fun setToWallPaper(context: Context, videoPath: String, isVolumes: Boolean) {
             sVideoPath = videoPath
             isVolume = isVolumes
-            try {
-                context.clearWallpaper()
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
             val intent = Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER)
             intent.putExtra(
                 WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
