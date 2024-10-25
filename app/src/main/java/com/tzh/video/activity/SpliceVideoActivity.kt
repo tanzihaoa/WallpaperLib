@@ -18,8 +18,8 @@ import com.tzh.video.dialog.VideoHintDialog
 import com.tzh.video.util.ToastUtil
 import com.tzh.video.util.img.GlideEngine
 import com.tzh.video.util.img.ImgUtil
-import com.tzh.wallpaper.util.OnPermissionCallBackListener
-import com.tzh.wallpaper.util.PermissionXUtil
+import com.tzh.wallpaperlib.util.OnPermissionCallBackListener
+import com.tzh.wallpaperlib.util.PermissionXUtil
 import io.microshow.rxffmpeg.RxFFmpegInvoke
 import io.microshow.rxffmpeg.RxFFmpegSubscriber
 import io.reactivex.android.schedulers.AndroidSchedulers

@@ -7,11 +7,11 @@ import com.tzh.video.base.AppBaseActivity
 import com.tzh.video.databinding.ActivityMainBinding
 import com.tzh.video.widget.MyWidgetProvider
 import com.tzh.video.widget.WidgetType
-import com.tzh.wallpaper.dao.daoutils.DaoWidgetUtils
-import com.tzh.wallpaper.dao.dto.WidgetDto
-import com.tzh.wallpaper.util.video.VideoUtil
-import com.tzh.wallpaper.util.wallpaper.WallpaperManagerUtil
-import com.tzh.wallpaper.widget.WidgetUtil
+import com.tzh.wallpaperlib.dao.daoutils.DaoWidgetUtils
+import com.tzh.wallpaperlib.dao.dto.WidgetDto
+import com.tzh.wallpaperlib.util.video.VideoUtil
+import com.tzh.wallpaperlib.util.wallpaper.WallpaperManagerUtil
+import com.tzh.wallpaperlib.widget.WidgetUtil
 
 
 class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main) {

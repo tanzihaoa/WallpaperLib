@@ -5,11 +5,11 @@ import android.appwidget.AppWidgetManager
 import android.content.Context
 import android.content.Intent
 import android.widget.RemoteViews
-import com.tzh.wallpaper.R
-import com.tzh.wallpaper.dao.daoutils.DaoWidgetUtils
-import com.tzh.wallpaper.dao.dto.WidgetDto
-import com.tzh.wallpaper.widget.base.BaseWidgetProvider
-import com.tzh.wallpaper.widget.WidgetUtil
+import com.tzh.wallpaperlib.R
+import com.tzh.wallpaperlib.dao.daoutils.DaoWidgetUtils
+import com.tzh.wallpaperlib.dao.dto.WidgetDto
+import com.tzh.wallpaperlib.widget.base.BaseWidgetProvider
+import com.tzh.wallpaperlib.widget.WidgetUtil
 
 class MyWidgetProvider : BaseWidgetProvider() {
     override fun onUpdate(

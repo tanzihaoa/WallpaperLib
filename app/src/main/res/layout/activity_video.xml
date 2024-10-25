@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:xtbTitleText="视频"/>
-        <com.tzh.wallpaper.view.MyJZVideoPlayerStandard
+        <com.tzh.wallpaperlib.view.MyJZVideoPlayerStandard
             android:id="@+id/video_play"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

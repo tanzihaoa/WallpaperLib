@@ -2,7 +2,7 @@ package com.tzh.video.dialog
 
 import android.content.Context
 import com.tzh.video.databinding.DialogVideoHintBinding
-import com.tzh.wallpaper.dialog.BaseBindingDialog
+import com.tzh.wallpaperlib.dialog.BaseBindingDialog
 
 /**
  * 提示dialog

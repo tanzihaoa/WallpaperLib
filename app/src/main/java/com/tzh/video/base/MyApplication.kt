@@ -3,7 +3,7 @@ package com.tzh.video.base
 import android.app.Application
 import android.content.Context
 import androidx.multidex.MultiDex
-import com.tzh.wallpaper.dao.daoutils.DaoManager
+import com.tzh.wallpaperlib.dao.daoutils.DaoManager
 import io.microshow.rxffmpeg.RxFFmpegInvoke
 
 class MyApplication : Application() {
