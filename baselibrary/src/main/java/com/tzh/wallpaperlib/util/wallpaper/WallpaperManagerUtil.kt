@@ -118,17 +118,11 @@ object WallpaperManagerUtil {
                     VideoWallpaper.setToWallPaper(activity,fileDownloadUtil.getPath(url),isVolume)
                 }
 
-                        override fun onError(throwable: Throwable) {
+                override fun onError(throwable: Throwable) {
 
-                        }
-                    })
                 }
-            }
-
-            override fun onDisAgree() {
-
-            }
-        })
+            })
+        }
     }
 
     /**

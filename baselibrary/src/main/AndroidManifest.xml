@@ -17,7 +17,7 @@
                 <action android:name="android.service.wallpaper.WallpaperService"/>
             </intent-filter>
             <meta-data android:name="android.service.wallpaper"
-                android:resource="@xml/videowallpaper"
+                android:resource="@xml/video_wallpaper"
                 />
         </service>
         <receiver
