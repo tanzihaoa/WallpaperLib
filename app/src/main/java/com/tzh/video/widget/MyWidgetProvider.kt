@@ -5,6 +5,7 @@ import android.appwidget.AppWidgetManager
 import android.content.Context
 import android.content.Intent
 import android.widget.RemoteViews
+import com.tzh.video.receiver.MyBroadcastReceiver
 import com.tzh.wallpaperlib.R
 import com.tzh.wallpaperlib.dao.daoutils.DaoWidgetUtils
 import com.tzh.wallpaperlib.dao.dto.WidgetDto
@@ -12,11 +13,7 @@ import com.tzh.wallpaperlib.widget.base.BaseWidgetProvider
 import com.tzh.wallpaperlib.widget.WidgetUtil
 
 class MyWidgetProvider : BaseWidgetProvider() {
-    override fun onUpdate(
-        context: Context?,
-        appWidgetManager: AppWidgetManager?,
-        appWidgetIds: IntArray?
-    ) {
+    override fun onUpdate(context: Context?, appWidgetManager: AppWidgetManager?, appWidgetIds: IntArray?) {
         appWidgetIds?.forEach { appWidgetId ->
             val views = RemoteViews(context?.packageName, R.layout.widget_layout)
             getRemoteViews()?.let {
@@ -32,10 +29,11 @@ class MyWidgetProvider : BaseWidgetProvider() {
                 views.setTextViewText(R.id.tv_name,dto.name)
                 views.setTextViewText(R.id.tv_num,dto.num1.toString())
             }
-            val intent = Intent(context,MyWidgetProvider::class.java)
-            intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
-            val pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-            views.setOnClickPendingIntent(R.id.tv_name, pendingIntent)
+            val intent = Intent(context, MyBroadcastReceiver::class.java)
+            intent.action = "com.tzh.video.AUTO"
+            intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, WidgetType.MyWidgetProvider)
+            val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+            views.setOnClickPendingIntent(R.id.image_bg, pendingIntent)
             appWidgetManager?.updateAppWidget(appWidgetId, views)
         }
     }

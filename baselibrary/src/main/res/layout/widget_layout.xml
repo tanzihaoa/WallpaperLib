@@ -5,7 +5,7 @@
     xmlns:tool="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tool:background="@color/white">
+    tool:background="@color/black">
     <ImageView
         android:id="@+id/image_bg"
         android:layout_width="match_parent"

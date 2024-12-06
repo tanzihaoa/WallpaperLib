@@ -87,6 +87,15 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/simple_app_widget_info" />
         </receiver>
+
+        <receiver android:name=".receiver.MyBroadcastReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.tzh.video.AUTO" />
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </receiver>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.tzh.video.fileprovider"
@@ -96,6 +105,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
     </application>
 
 </manifest>
