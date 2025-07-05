@@ -1,4 +1,4 @@
-package com.tzh.wallpaperlib.dao.dto;
+package com.tzh.wallpaperlib.greendao;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

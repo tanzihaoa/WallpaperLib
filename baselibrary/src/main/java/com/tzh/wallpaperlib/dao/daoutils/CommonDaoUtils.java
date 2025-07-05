@@ -1,6 +1,6 @@
 package com.tzh.wallpaperlib.dao.daoutils;
 
-import com.tzh.wallpaperlib.dao.dto.DaoSession;
+import com.tzh.wallpaperlib.greendao.DaoSession;
 
 import org.greenrobot.greendao.AbstractDao;
 import org.greenrobot.greendao.query.QueryBuilder;

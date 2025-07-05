@@ -3,8 +3,8 @@ package com.tzh.wallpaperlib.dao.daoutils;
 import android.content.Context;
 
 import com.tzh.wallpaperlib.BuildConfig;
-import com.tzh.wallpaperlib.dao.dto.DaoMaster;
-import com.tzh.wallpaperlib.dao.dto.DaoSession;
+import com.tzh.wallpaperlib.greendao.DaoMaster;
+import com.tzh.wallpaperlib.greendao.DaoSession;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 
