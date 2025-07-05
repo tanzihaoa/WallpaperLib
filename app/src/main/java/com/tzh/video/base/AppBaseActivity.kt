@@ -6,8 +6,8 @@ import android.view.inputmethod.InputMethodManager
 import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
 import com.gyf.immersionbar.ImmersionBar
-import com.tzh.mylibrary.base.XBaseBindingActivity
-import com.tzh.mylibrary.util.LogUtils
+import com.tzh.baselib.base.XBaseBindingActivity
+import com.tzh.baselib.util.LogUtils
 
 abstract class AppBaseActivity<B : ViewDataBinding>(@LayoutRes LayoutId: Int = 0) : XBaseBindingActivity<B>(LayoutId) {
 
@@ -41,11 +41,5 @@ abstract class AppBaseActivity<B : ViewDataBinding>(@LayoutRes LayoutId: Int = 0
         super.onPause()
         LogUtils.e(TAG,"onPause")
     }
-
-    override fun onCloseActivity() {
-        hideSoftKeyBoard()
-        ImmersionBar.with(this).reset()
-    }
-
 
 }

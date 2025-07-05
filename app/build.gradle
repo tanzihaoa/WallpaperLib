@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.internal.KaptGenerateStubsTask
+
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
@@ -6,12 +8,13 @@ plugins {
 }
 
 android {
-    compileSdk 33
+    compileSdk 34
+    namespace "com.tzh.video"
 
     defaultConfig {
         applicationId "com.tzh.video"
         minSdk 24
-        versionCode 1
+        versionCode 1000
         versionName "1.0.0"
         multiDexEnabled true
 
@@ -62,6 +65,10 @@ android {
         targetCompatibility JavaVersion.VERSION_11
     }
 
+    buildFeatures {
+        buildConfig true // 确保此处为 true
+    }
+
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11
     }
@@ -77,11 +84,17 @@ android {
     }
 }
 
+// 动态绑定任务依赖
+afterEvaluate {
+    tasks.withType(KaptGenerateStubsTask).configureEach { task ->
+        task.dependsOn("greendao")
+    }
+}
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.core:core-ktx:1.13.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'com.google.android.material:material:1.10.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
@@ -103,9 +116,8 @@ dependencies {
     implementation 'com.airbnb.android:lottie:6.0.0'
     api 'androidx.multidex:multidex:2.0.1'
 
-    api 'com.github.tanzihaoa:ModelLib:v1.1.0'
+    api 'com.github.tanzihaoa:BaseLib:v1.1.0'
 
-    implementation 'top.zibin:Luban:1.1.8'
     implementation 'com.github.HuanTanSheng:EasyPhotos:3.1.5'
 
     implementation 'com.github.microshow:RxFFmpeg:4.9.0'

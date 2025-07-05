@@ -1,7 +1,7 @@
 package com.tzh.video.util
 
 import android.util.Log
-import com.tzh.mylibrary.util.toDefault
+import com.tzh.baselib.util.toDefault
 import com.tzh.video.BuildConfig
 
 object LogUtils {

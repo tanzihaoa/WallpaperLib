@@ -173,6 +173,7 @@ object PermissionXUtil {
     }
 
     private fun requestPermission(activity: AppCompatActivity?=null, permission: MutableList<String>, callBack: OnPermissionCallBackListener?= null){
+        activity?:return
         PermissionX.init(activity).permissions(permission).onExplainRequestReason { scope, deniedList ->
             val message = "需要您同意以下权限才能正常使用"
             scope.showRequestReasonDialog(deniedList, message, "确定", "取消")
@@ -188,6 +189,7 @@ object PermissionXUtil {
     }
 
     private fun requestPermission(activity: Fragment?=null, permission: MutableList<String>, callBack: OnPermissionCallBackListener?=null){
+        activity?:return
         PermissionX.init(activity).permissions(permission).onExplainRequestReason { scope, deniedList ->
             val message = "需要您同意以下权限才能正常使用"
             scope.showRequestReasonDialog(deniedList, message, "确定", "取消")

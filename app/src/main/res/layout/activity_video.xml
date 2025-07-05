@@ -13,7 +13,7 @@
         android:orientation="vertical"
         android:gravity="center_horizontal"
         android:background="@color/color_fff">
-        <com.tzh.mylibrary.view.XAppTitleBar
+        <com.tzh.baselib.view.title.XAppTitleBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:xtbTitleText="视频"/>

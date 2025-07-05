@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.tzh.wallpaperlib.util.download.DownloadType
 import com.tzh.wallpaperlib.util.download.FileDownloadUtil
+import com.tzh.wallpaperlib.util.wallpaper.WallpaperManagerUtil.WallPaperListener
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -60,7 +61,7 @@ object BitmapUtil {
                 }
 
                 override fun onError(throwable: Throwable) {
-
+                    listener.error()
                 }
             })
         }
@@ -174,15 +175,22 @@ object BitmapUtil {
 
     interface BitmapListener{
         fun sure(bitmap: Bitmap)
+
+        fun error()
     }
 
     /**
      * 保存图片
      */
-    fun saveUrl(context: Context, url : String){
+    fun saveUrl(context: Context, url : String,listener : WallPaperListener ?= null){
         urlToBitmap(context,url,object : BitmapListener {
             override fun sure(bitmap: Bitmap) {
+                listener?.ok()
                 saveBitmap(context,bitmap)
+            }
+
+            override fun error() {
+                listener?.error()
             }
         })
     }

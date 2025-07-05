@@ -10,9 +10,10 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.1'
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0'
-        classpath 'org.greenrobot:greendao-gradle-plugin:3.3.0'
+        classpath 'com.android.tools.build:gradle:8.2.1'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.22'
+
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.3.1'
     }
 }
 
@@ -27,8 +28,6 @@ allprojects {
         maven { url 'https://developer.huawei.com/repo/' }
 
         maven { url 'https://gitee.com/YuanArcheanNovice/archean_android_lib/raw/master/maven' }
-
-        maven { url "https://nexus-sdk.cm253.com/repository/maven-public/" }
 
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 

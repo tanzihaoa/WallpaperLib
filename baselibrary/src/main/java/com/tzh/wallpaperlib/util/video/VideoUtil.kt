@@ -9,6 +9,7 @@ import android.util.Log
 import android.widget.Toast
 import com.tzh.wallpaperlib.util.download.DownloadType
 import com.tzh.wallpaperlib.util.download.FileDownloadUtil
+import com.tzh.wallpaperlib.util.wallpaper.WallpaperManagerUtil.WallPaperListener
 import java.io.File
 import java.io.FileInputStream
 import java.io.IOException
@@ -17,19 +18,21 @@ import java.io.OutputStream
 
 
 object VideoUtil {
-    fun saveVideo(context: Context,url : String){
+    fun saveVideo(context: Context,url : String,listener : WallPaperListener ?= null){
         val downloadUtil = FileDownloadUtil(context, DownloadType.MP4)
         if(downloadUtil.isHaveFile(url)){
+            listener?.ok()
             val file = File(downloadUtil.getPath(url))
             saveFile(context,file)
         }else{
             downloadUtil.onDownloadFile(url,object : FileDownloadUtil.OnDownloadListener() {
                 override fun onSuccess(file: File) {
+                    listener?.ok()
                     saveFile(context,file)
                 }
 
                 override fun onError(throwable: Throwable) {
-
+                    listener?.error()
                 }
             })
         }

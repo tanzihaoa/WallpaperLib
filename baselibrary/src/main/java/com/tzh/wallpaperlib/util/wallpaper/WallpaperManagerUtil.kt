@@ -24,12 +24,18 @@ object WallpaperManagerUtil {
     /**
      * 设置壁纸
      */
-    fun setWallpaper(context: AppCompatActivity, url : String){
+    fun setWallpaper(context: AppCompatActivity, url : String,listener : WallPaperListener ?= null){
         val manager = context.getSystemService(Context.WALLPAPER_SERVICE) as WallpaperManager
         BitmapUtil.urlToBitmap(context,url,object : BitmapUtil.BitmapListener{
             override fun sure(bitmap: Bitmap) {
+                listener?.ok()
                 manager.setBitmap(bitmap)
                 Toast.makeText(context,"设置成功",Toast.LENGTH_SHORT).show()
+            }
+
+            override fun error() {
+                listener?.error()
+                Toast.makeText(context,"设置失败",Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -37,13 +43,19 @@ object WallpaperManagerUtil {
     /**
      * 设置壁纸
      */
-    fun setWallpaper(fragment : Fragment, url : String){
-        val manager = fragment.activity?.getSystemService(Context.WALLPAPER_SERVICE) as WallpaperManager
+    fun setWallpaper(fragment : Fragment, url : String,listener : WallPaperListener ?= null){
         fragment.context?.let {
+            val manager = it.getSystemService(Context.WALLPAPER_SERVICE) as WallpaperManager
             BitmapUtil.urlToBitmap(it,url,object : BitmapUtil.BitmapListener{
                 override fun sure(bitmap: Bitmap) {
+                    listener?.ok()
                     manager.setBitmap(bitmap)
                     Toast.makeText(it,"设置成功",Toast.LENGTH_SHORT).show()
+                }
+
+                override fun error() {
+                    listener?.error()
+                    Toast.makeText(it,"设置失败",Toast.LENGTH_SHORT).show()
                 }
             })
         }
@@ -54,21 +66,23 @@ object WallpaperManagerUtil {
      * @param url 视频链接
      * @param isVolume 是否有声音
      */
-    fun setVideoWallpaper(fragment : Fragment, url : String,isVolume : Boolean = true){
+    fun setVideoWallpaper(fragment : Fragment, url : String,isVolume : Boolean = true,listener : WallPaperListener ?= null){
         fragment.context?.apply {
             val fileDownloadUtil = FileDownloadUtil(this@apply,DownloadType.MP4)
             if(fileDownloadUtil.isHaveFile(url)){
+                listener?.ok()
                 Log.e("setVideoWallpaper=====1",fileDownloadUtil.getPath(url))
                 VideoWallpaper.setToWallPaper(this@apply,fileDownloadUtil.getPath(url),isVolume)
             }else{
                 fileDownloadUtil.onDownloadFile(url,object : FileDownloadUtil.OnDownloadListener(){
                     override fun onSuccess(file: File) {
                         Log.e("setVideoWallpaper=====2",fileDownloadUtil.getPath(url))
+                        listener?.ok()
                         VideoWallpaper.setToWallPaper(this@apply,fileDownloadUtil.getPath(url),isVolume)
                     }
 
                     override fun onError(throwable: Throwable) {
-
+                        listener?.error()
                     }
                 })
             }
@@ -80,21 +94,23 @@ object WallpaperManagerUtil {
      * @param url 视频链接
      * @param isVolume 是否有声音
      */
-    fun setVideoWallpaperDialog(fragment : Fragment, url : String){
+    fun setVideoWallpaperDialog(fragment : Fragment, url : String,listener : WallPaperListener ?= null){
         fragment.context?.let {
             VolumeDialog(it,object : VolumeDialog.VolumeListener{
                 override fun volume(volume: Boolean) {
                     val fileDownloadUtil = FileDownloadUtil(it,DownloadType.MP4)
                     if(fileDownloadUtil.isHaveFile(url)){
+                        listener?.ok()
                         VideoWallpaper.setToWallPaper(it,fileDownloadUtil.getPath(url),volume)
                     }else{
                         fileDownloadUtil.onDownloadFile(url,object : FileDownloadUtil.OnDownloadListener(){
                             override fun onSuccess(file: File) {
+                                listener?.ok()
                                 VideoWallpaper.setToWallPaper(it,fileDownloadUtil.getPath(url),volume)
                             }
 
                             override fun onError(throwable: Throwable) {
-
+                                listener?.error()
                             }
                         })
                     }
@@ -108,18 +124,20 @@ object WallpaperManagerUtil {
      * @param url 视频链接
      * @param isVolume 是否有声音
      */
-    fun setVideoWallpaper(activity : AppCompatActivity, url : String,isVolume : Boolean = true){
+    fun setVideoWallpaper(activity : AppCompatActivity, url : String,isVolume : Boolean = true,listener : WallPaperListener ?= null){
         val fileDownloadUtil = FileDownloadUtil(activity,DownloadType.MP4)
         if(fileDownloadUtil.isHaveFile(url)){
+            listener?.ok()
             VideoWallpaper.setToWallPaper(activity,fileDownloadUtil.getPath(url),isVolume)
         }else{
             fileDownloadUtil.onDownloadFile(url,object : FileDownloadUtil.OnDownloadListener(){
                 override fun onSuccess(file: File) {
+                    listener?.ok()
                     VideoWallpaper.setToWallPaper(activity,fileDownloadUtil.getPath(url),isVolume)
                 }
 
                 override fun onError(throwable: Throwable) {
-
+                    listener?.error()
                 }
             })
         }
@@ -130,7 +148,7 @@ object WallpaperManagerUtil {
      * @param url 视频链接
      * @param isVolume 是否有声音
      */
-    fun setVideoWallpaperDialog(activity : AppCompatActivity, url : String){
+    fun setVideoWallpaperDialog(activity : AppCompatActivity, url : String,listener : WallPaperListener ?= null){
         VolumeDialog(activity,object : VolumeDialog.VolumeListener{
             override fun volume(volume: Boolean) {
                 PermissionXUtil.requestAnyPermission(activity, mutableListOf<String>().apply {
@@ -139,22 +157,24 @@ object WallpaperManagerUtil {
                     override fun onAgree() {
                         val fileDownloadUtil = FileDownloadUtil(activity,DownloadType.MP4)
                         if(fileDownloadUtil.isHaveFile(url)){
+                            listener?.ok()
                             VideoWallpaper.setToWallPaper(activity,fileDownloadUtil.getPath(url),volume)
                         }else{
                             fileDownloadUtil.onDownloadFile(url,object : FileDownloadUtil.OnDownloadListener(){
                                 override fun onSuccess(file: File) {
+                                    listener?.ok()
                                     VideoWallpaper.setToWallPaper(activity,fileDownloadUtil.getPath(url),volume)
                                 }
 
                                 override fun onError(throwable: Throwable) {
-
+                                    listener?.error()
                                 }
                             })
                         }
                     }
 
                     override fun onDisAgree() {
-
+                        listener?.error()
                     }
                 })
             }
@@ -175,5 +195,11 @@ object WallpaperManagerUtil {
             ComponentName(context, VideoWallpaper::class.java)
         )
         context.startActivity(intent)
+    }
+
+    interface WallPaperListener{
+        fun ok()
+
+        fun error()
     }
 }

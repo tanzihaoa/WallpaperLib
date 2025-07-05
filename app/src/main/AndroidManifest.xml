@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.tzh.video">
+    xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="miui.permission.READ_STEPS" />
     <uses-permission android:name="android.permission.BODY_SENSORS" />
@@ -88,7 +87,7 @@
                 android:resource="@xml/simple_app_widget_info" />
         </receiver>
 
-        <receiver android:name=".receiver.MyBroadcastReceiver"
+        <receiver android:name="com.tzh.video.receiver.MyBroadcastReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.tzh.video.AUTO" />

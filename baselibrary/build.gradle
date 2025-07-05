@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.internal.KaptGenerateStubsTask
+
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
@@ -6,11 +8,11 @@ plugins {
 }
 
 android {
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         minSdk 23
-
+        namespace "com.tzh.wallpaperlib"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -27,6 +29,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11
+    }
+
+    buildFeatures {
+        buildConfig true // 确保此处为 true
     }
 
     dataBinding {
@@ -49,6 +55,13 @@ greendao {
 //    daoPackage 'com.greendao.demo.greendao.database'
 }
 
+// 动态绑定任务依赖
+afterEvaluate {
+    tasks.withType(KaptGenerateStubsTask).configureEach { task ->
+        task.dependsOn("greendao")
+    }
+}
+
 dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
@@ -61,7 +74,7 @@ dependencies {
     api 'com.liulishuo.okdownload:okdownload:1.0.7'
     api 'com.liulishuo.okdownload:okhttp:1.0.7'
 
-    api 'com.guolindev.permissionx:permissionx:1.6.4'
+    api 'com.guolindev.permissionx:permissionx:1.8.1'
 
     //视频播放
     api 'cn.jzvd:jiaozivideoplayer:7.7.0'

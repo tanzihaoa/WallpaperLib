@@ -11,7 +11,7 @@ import com.huantansheng.easyphotos.EasyPhotos;
 import com.huantansheng.easyphotos.callback.SelectCallback;
 import com.huantansheng.easyphotos.models.album.entity.Photo;
 import com.tzh.video.util.ToastUtil;
-import com.tzh.mylibrary.util.GsonUtil;
+import com.tzh.baselib.util.GsonUtil;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -123,14 +123,15 @@ public class CameraUtil {
                     }
 
                     @Override
-                    public void onSuccess(File file) {
+                    public void onSuccess(int index, File file) {
                         Log.e("Luban====onSuccess", file.getAbsolutePath());
                         Log.e("Luban====", "onSuccess");
                         callback.onResult(new ImageDTO(file));
+
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(int index, Throwable e) {
                         Log.e("Luban====", "onError"+e.getMessage());
                         ToastUtil.showLong(e.getMessage());
                         // TODO 当压缩过程出现问题时调用
@@ -158,7 +159,7 @@ public class CameraUtil {
                     }
 
                     @Override
-                    public void onSuccess(File file) {
+                    public void onSuccess(int index, File file) {
                         Log.e("Luban====onSuccess", file.getAbsolutePath());
                         Log.e("Luban====", "onSuccess");
                         dtoList.add(new ImageDTO(file));
@@ -168,7 +169,7 @@ public class CameraUtil {
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(int index, Throwable e) {
                         Log.e("Luban====", "onError"+e.getMessage());
                         ToastUtil.showLong(e.getMessage());
                         callback.onError();
