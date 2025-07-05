@@ -9,7 +9,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.tzh.wallpaperlib.dao.daoutils.DaoWidgetUtils
 import com.tzh.wallpaperlib.dao.dto.WidgetDto
-import com.tzh.wallpaperlib.dialog.HintDialog
+import com.tzh.wallpaperlib.dialog.WallpaperHintDialog
 import com.tzh.wallpaperlib.util.RomUtils
 import com.tzh.wallpaperlib.util.toDefault
 import com.tzh.wallpaperlib.util.wallpaper.RuntimeSettingPage
@@ -60,7 +60,7 @@ object WidgetUtil {
                 Toast.makeText(context,"手机版本过低",Toast.LENGTH_SHORT).show()
             }
         }else{
-            HintDialog(context,object : HintDialog.HintDialogListener{
+            WallpaperHintDialog(context,object : WallpaperHintDialog.HintDialogListener{
                 override fun cancel() {
 
                 }

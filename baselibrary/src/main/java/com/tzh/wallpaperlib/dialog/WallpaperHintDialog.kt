@@ -2,12 +2,12 @@ package com.tzh.wallpaperlib.dialog
 
 import android.content.Context
 import com.tzh.wallpaperlib.R
-import com.tzh.wallpaperlib.databinding.DialogHintBinding
+import com.tzh.wallpaperlib.databinding.DialogWallpaperHintBinding
 
 /**
  * 提示dialog
  */
-class HintDialog(context : Context,private val listener: HintDialogListener) : BaseBindingDialog<DialogHintBinding>(context, R.layout.dialog_hint){
+class WallpaperHintDialog(context : Context, private val listener: HintDialogListener) : BaseBindingDialog<DialogWallpaperHintBinding>(context, R.layout.dialog_wallpaper_hint){
 
     override fun initView() {
         //取消
