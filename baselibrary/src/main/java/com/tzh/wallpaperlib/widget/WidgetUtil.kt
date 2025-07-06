@@ -7,8 +7,9 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
-import com.tzh.wallpaperlib.dao.daoutils.DaoWidgetUtils
+import com.tzh.wallpaperlib.dao.daoutils.AppDatabase
 import com.tzh.wallpaperlib.dao.dto.WidgetDto
+import com.tzh.wallpaperlib.dao.dto.WidgetRepository
 import com.tzh.wallpaperlib.dialog.WallpaperHintDialog
 import com.tzh.wallpaperlib.util.RomUtils
 import com.tzh.wallpaperlib.util.toDefault
@@ -43,11 +44,11 @@ object WidgetUtil {
                 Toast.makeText(context,"组件已经存在",Toast.LENGTH_SHORT).show()
                 return
             }
-
-            if(DaoWidgetUtils.getInstance().daoQueryUserByToken(dto.token)?.size.toDefault(0) == 0){
-                DaoWidgetUtils.getInstance().daoInsertDefaultUser(dto)
+            val dao = WidgetRepository(AppDatabase.getDatabase(context).widgetDao())
+            if(dao.getWidgetByToken(dto.token.toDefault("")).size.toDefault(0) == 0){
+                dao.insert(dto)
             }else{
-                DaoWidgetUtils.getInstance().updateUser(dto)
+                dao.update(dto)
             }
             if(Build.VERSION.SDK_INT >= 26){
                 if (appWidgetManager.isRequestPinAppWidgetSupported) {

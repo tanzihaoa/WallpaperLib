@@ -4,7 +4,6 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
-    id 'org.greenrobot.greendao'
 }
 
 android {
@@ -81,13 +80,6 @@ android {
     lintOptions {
         abortOnError false
         checkReleaseBuilds false
-    }
-}
-
-// 动态绑定任务依赖
-afterEvaluate {
-    tasks.withType(KaptGenerateStubsTask).configureEach { task ->
-        task.dependsOn("greendao")
     }
 }
 

@@ -7,8 +7,9 @@ import android.content.Intent
 import android.widget.RemoteViews
 import com.tzh.video.receiver.MyBroadcastReceiver
 import com.tzh.wallpaperlib.R
-import com.tzh.wallpaperlib.dao.daoutils.DaoWidgetUtils
+import com.tzh.wallpaperlib.dao.dto.DataBaseUtil
 import com.tzh.wallpaperlib.dao.dto.WidgetDto
+import com.tzh.wallpaperlib.util.toDefault
 import com.tzh.wallpaperlib.widget.base.BaseWidgetProvider
 import com.tzh.wallpaperlib.widget.WidgetUtil
 
@@ -19,12 +20,12 @@ class MyWidgetProvider : BaseWidgetProvider() {
             getRemoteViews()?.let {
 
             }
-            val list = DaoWidgetUtils.getInstance().daoQueryUserByToken(WidgetType.MyWidgetProvider)
-            if(list.size > 0){
+            val list = DataBaseUtil.getWidgetDao(context).getWidgetByToken(WidgetType.MyWidgetProvider)
+            if(list.isNotEmpty()){
                 val dto = list[0]
                 if(dto.widget_id != appWidgetId.toString()){
                     dto.widget_id = appWidgetId.toString()
-                    DaoWidgetUtils.getInstance().updateUser(dto)
+                    DataBaseUtil.getWidgetDao(context).update(dto)
                 }
                 views.setTextViewText(R.id.tv_name,dto.name)
                 views.setTextViewText(R.id.tv_num,dto.num1.toString())
@@ -44,11 +45,11 @@ class MyWidgetProvider : BaseWidgetProvider() {
             val action = this.action
             val deskWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,-1)
             if(deskWidgetId >= 0){
-                val list = DaoWidgetUtils.getInstance().daoQueryUserByWidgetId(deskWidgetId.toString())
-                if(list.size > 0){
+                val list = DataBaseUtil.getWidgetDao(context).getWidgetByWidgetId(deskWidgetId.toString())
+                if(list.isNotEmpty()){
                     val dto = list[0]
                     dto.num1 += 1
-                    DaoWidgetUtils.getInstance().updateUser(dto)
+                    DataBaseUtil.getWidgetDao(context).update(dto)
                     if (context != null) {
                         WidgetUtil.update(context,MyWidgetProvider::class.java)
                     }
@@ -68,7 +69,7 @@ class MyWidgetProvider : BaseWidgetProvider() {
             val views = RemoteViews(context.packageName, R.layout.widget_layout)
             views.setTextViewText(R.id.tv_name,dto.name)
             views.setTextViewText(R.id.tv_num,dto.num1.toString())
-            AppWidgetManager.getInstance(context).updateAppWidget(dto.widget_id.toInt(),views)
+            AppWidgetManager.getInstance(context).updateAppWidget(dto.widget_id.toDefault("0").toInt(),views)
         }
     }
 }

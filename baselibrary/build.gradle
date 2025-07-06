@@ -4,11 +4,10 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
-    id 'org.greenrobot.greendao'
 }
 
 android {
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         minSdk 23
@@ -46,22 +45,6 @@ configurations.all {
     }
 }
 
-greendao {
-    //指定数据库schema版本号，迁移等操作会用到
-    schemaVersion 1
-    //设置生成数据库文件的目录，默认是在build中，可以将生成的文件放到我们的java目录中
-    targetGenDir 'src/main/java'
-    //设置生成的数据库相关文件的包名，默认为entity所在的包名
-//    daoPackage 'com.greendao.demo.greendao.database'
-}
-
-// 动态绑定任务依赖
-afterEvaluate {
-    tasks.withType(KaptGenerateStubsTask).configureEach { task ->
-        task.dependsOn("greendao")
-    }
-}
-
 dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
@@ -69,6 +52,8 @@ dependencies {
 
     api 'androidx.appcompat:appcompat:1.6.1'
     api 'androidx.constraintlayout:constraintlayout:2.1.4'
+    api 'androidx.core:core:1.13.1'
+    api 'androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2'
 
     //文件下载 https://github.com/lingochamp/okdownload/wiki
     api 'com.liulishuo.okdownload:okdownload:1.0.7'
@@ -79,5 +64,21 @@ dependencies {
     //视频播放
     api 'cn.jzvd:jiaozivideoplayer:7.7.0'
 
-    implementation 'org.greenrobot:greendao:3.3.1'
+
+    implementation "androidx.room:room-runtime:2.6.1"
+    implementation("androidx.room:room-ktx:2.6.1") // Kotlin扩展
+    kapt("androidx.room:room-compiler:2.6.1")  // 注解处理器:cite[3]:cite[7]
+
+
+    // optional - RxJava support for Room
+    implementation("androidx.room:room-rxjava2:2.6.1")
+
+    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
+
+    // optional - Guava support for Room, including Optional and ListenableFuture
+    implementation("androidx.room:room-guava:2.6.1")
+
+    // Test helpers
+    testImplementation("androidx.room:room-testing:2.6.1")
 }

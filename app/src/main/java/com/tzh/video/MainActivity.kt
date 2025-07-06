@@ -7,7 +7,7 @@ import com.tzh.video.base.AppBaseActivity
 import com.tzh.video.databinding.ActivityMainBinding
 import com.tzh.video.widget.MyWidgetProvider
 import com.tzh.video.widget.WidgetType
-import com.tzh.wallpaperlib.dao.daoutils.DaoWidgetUtils
+import com.tzh.wallpaperlib.dao.dto.DataBaseUtil
 import com.tzh.wallpaperlib.dao.dto.WidgetDto
 import com.tzh.wallpaperlib.util.video.VideoUtil
 import com.tzh.wallpaperlib.util.wallpaper.WallpaperManagerUtil
@@ -41,12 +41,13 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
      * 更新小组件
      */
     fun upDateWidget(){
-        val list = DaoWidgetUtils.getInstance().daoQueryUserByToken(WidgetType.MyWidgetProvider)
+        val dao = DataBaseUtil.getWidgetDao(this)
+        val list = dao.getWidgetByToken(WidgetType.MyWidgetProvider)
         if(list.size > 0){
             val dto = list[0]
             dto.name = "我的组件"
             dto.num1 = dto.num1 + 1
-            DaoWidgetUtils.getInstance().updateUser(dto)
+            dao.update(dto)
             WidgetUtil.update(this,MyWidgetProvider::class.java)
         }
     }
