@@ -61,13 +61,6 @@ greendao {
     daoPackage 'com.tzh.wallpaperlib.greendao'
 }
 
-// 动态绑定任务依赖
-afterEvaluate {
-    tasks.withType(KaptGenerateStubsTask).configureEach { task ->
-        task.dependsOn("greendao")
-    }
-}
-
 dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
