@@ -15,6 +15,10 @@ import androidx.core.content.ContextCompat
 import com.tzh.wallpaperlib.util.download.DownloadType
 import com.tzh.wallpaperlib.util.download.FileDownloadUtil
 import com.tzh.wallpaperlib.util.wallpaper.WallpaperManagerUtil.WallPaperListener
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -56,8 +60,14 @@ object BitmapUtil {
         }else{
             downloadUtil.onDownloadFile(imgUrl,object : FileDownloadUtil.OnDownloadListener() {
                 override fun onSuccess(file: File) {
-                    val bitmap = localFileToBitmap(file)
-                    listener.sure(bitmap)
+                    CoroutineScope(Dispatchers.Default).launch {
+                        val bitmap = localFileToBitmap(file)
+
+                        withContext(Dispatchers.Main) {
+                            listener.sure(bitmap)
+                        }
+                    }
+
                 }
 
                 override fun onError(throwable: Throwable) {
