@@ -8,10 +8,10 @@ plugins {
 }
 
 android {
-    compileSdk 35
+    compileSdk 34
 
     defaultConfig {
-        minSdk 24
+        minSdk 23
         namespace "com.tzh.wallpaperlib"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -24,11 +24,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17
+        jvmTarget = JavaVersion.VERSION_11
     }
 
     buildFeatures {
@@ -48,11 +48,18 @@ configurations.all {
 
 greendao {
     //指定数据库schema版本号，迁移等操作会用到
-    schemaVersion 2
+    schemaVersion 1
     //设置生成数据库文件的目录，默认是在build中，可以将生成的文件放到我们的java目录中
     targetGenDir 'src/main/java'
     //设置生成的数据库相关文件的包名，默认为entity所在的包名
-    daoPackage 'com.tzh.wallpaperlib.greendao'
+//    daoPackage 'com.greendao.demo.greendao.database'
+}
+
+// 动态绑定任务依赖
+afterEvaluate {
+    tasks.withType(KaptGenerateStubsTask).configureEach { task ->
+        task.dependsOn("greendao")
+    }
 }
 
 dependencies {
@@ -72,18 +79,5 @@ dependencies {
     //视频播放
     api 'cn.jzvd:jiaozivideoplayer:7.7.0'
 
-    implementation 'org.greenrobot:greendao:3.3.0'
-}
-
-//适用于greendao打包报错
-tasks.configureEach { task ->
-    if (task.name.matches("\\w*compile\\w*Kotlin")) {
-        task.dependsOn('greendao')
-    }
-    if (task.name.matches("\\w*kaptGenerateStubs\\w*Kotlin")) {
-        task.dependsOn('greendao')
-    }
-    if (task.name.matches("\\w*kapt\\w*Kotlin")) {
-        task.dependsOn('greendao')
-    }
+    implementation 'org.greenrobot:greendao:3.3.1'
 }
