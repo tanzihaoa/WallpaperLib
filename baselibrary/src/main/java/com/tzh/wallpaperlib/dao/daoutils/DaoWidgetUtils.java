@@ -7,7 +7,7 @@ import java.util.List;
 public class DaoWidgetUtils {
     private volatile static DaoWidgetUtils instance;
 
-    public CommonDaoUtils<WidgetDto> userCommonDaoUtils;
+    public BaseCommonDaoUtils<WidgetDto> userCommonDaoUtils;
 
 
     public static DaoWidgetUtils getInstance()
@@ -23,9 +23,9 @@ public class DaoWidgetUtils {
 
     private DaoWidgetUtils()
     {
-        DaoManager mManager = DaoManager.getInstance();
+        BaseDaoManager mManager = BaseDaoManager.getInstance();
 
-        userCommonDaoUtils = new CommonDaoUtils<>(WidgetDto.class,mManager.getDaoSession().getWidgetDtoDao());
+        userCommonDaoUtils = new BaseCommonDaoUtils<>(WidgetDto.class,mManager.getDaoSession().getWidgetDtoDao());
 
     }
 

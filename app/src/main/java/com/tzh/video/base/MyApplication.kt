@@ -3,7 +3,7 @@ package com.tzh.video.base
 import android.app.Application
 import android.content.Context
 import androidx.multidex.MultiDex
-import com.tzh.wallpaperlib.dao.daoutils.DaoManager
+import com.tzh.wallpaperlib.dao.daoutils.BaseDaoManager
 import io.microshow.rxffmpeg.RxFFmpegInvoke
 
 class MyApplication : Application() {
@@ -16,7 +16,7 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         mContext = this
-        DaoManager.getInstance().init(this)
+        BaseDaoManager.getInstance().init(this)
         RxFFmpegInvoke.getInstance().setDebug(true)
     }
 

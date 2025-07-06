@@ -38,6 +38,13 @@ android {
     dataBinding {
         enabled = true
     }
+
+    // 添加源集配置
+    sourceSets {
+        main {
+            java.srcDirs += ["$buildDir/generated/sources/greendao"]
+        }
+    }
 }
 
 configurations.all {

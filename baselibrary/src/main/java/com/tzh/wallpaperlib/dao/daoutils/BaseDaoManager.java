@@ -11,14 +11,14 @@ import org.greenrobot.greendao.query.QueryBuilder;
 /**
  * 创建数据库、创建数据库表、包含增删改查的操作以及数据库的升级
  */
-public class DaoManager {
-    private static final String TAG = DaoManager.class.getSimpleName();
+public class BaseDaoManager {
+    private static final String TAG = BaseDaoManager.class.getSimpleName();
     private static final String DB_NAME = "diary.db";
 
     private Context context;
 
     //多线程中要被共享的使用volatile关键字修饰
-    private volatile static DaoManager manager ;
+    private volatile static BaseDaoManager manager ;
     private static DaoMaster sDaoMaster;
     private static DaoMaster.DevOpenHelper sHelper;
     private static DaoSession sDaoSession;
@@ -28,17 +28,17 @@ public class DaoManager {
      *
      * @return
      */
-    public static DaoManager getInstance()
+    public static BaseDaoManager getInstance()
     {
-        synchronized (DaoManager.class) {
+        synchronized (BaseDaoManager.class) {
             if (manager == null) {
-                manager = new DaoManager();
+                manager = new BaseDaoManager();
             }
         }
         return manager;
     }
 
-    private DaoManager()
+    private BaseDaoManager()
     {
         setDebug();
     }

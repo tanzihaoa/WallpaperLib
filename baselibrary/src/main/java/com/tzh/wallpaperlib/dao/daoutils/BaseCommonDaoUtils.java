@@ -12,17 +12,17 @@ import java.util.List;
  * 通用greendao工具
  * @param <T>
  */
-public class CommonDaoUtils<T> {
+public class BaseCommonDaoUtils<T> {
 
-    private static final String TAG = CommonDaoUtils.class.getSimpleName();
+    private static final String TAG = BaseCommonDaoUtils.class.getSimpleName();
 
     private final DaoSession daoSession;
     private final Class<T> entityClass;
     private final AbstractDao<T, Long> entityDao;
 
-    public CommonDaoUtils(Class<T> pEntityClass, AbstractDao<T, Long> pEntityDao)
+    public BaseCommonDaoUtils(Class<T> pEntityClass, AbstractDao<T, Long> pEntityDao)
     {
-        DaoManager mManager = DaoManager.getInstance();
+        BaseDaoManager mManager = BaseDaoManager.getInstance();
         daoSession = mManager.getDaoSession();
         entityClass = pEntityClass;
         entityDao = pEntityDao;
