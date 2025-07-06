@@ -85,5 +85,18 @@ dependencies {
     //视频播放
     api 'cn.jzvd:jiaozivideoplayer:7.7.0'
 
-    api 'org.greenrobot:greendao:3.3.0'
+    implementation 'org.greenrobot:greendao:3.3.0'
+}
+
+//适用于greendao打包报错
+tasks.configureEach { task ->
+    if (task.name.matches("\\w*compile\\w*Kotlin")) {
+        task.dependsOn('greendao')
+    }
+    if (task.name.matches("\\w*kaptGenerateStubs\\w*Kotlin")) {
+        task.dependsOn('greendao')
+    }
+    if (task.name.matches("\\w*kapt\\w*Kotlin")) {
+        task.dependsOn('greendao')
+    }
 }
