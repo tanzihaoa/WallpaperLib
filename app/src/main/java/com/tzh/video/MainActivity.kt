@@ -1,7 +1,6 @@
 package com.tzh.video
 
 import android.util.Log
-import com.tzh.video.activity.SpliceVideoActivity
 import com.tzh.video.activity.VideoActivity
 import com.tzh.video.base.AppBaseActivity
 import com.tzh.video.databinding.ActivityMainBinding
@@ -43,7 +42,7 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
     fun upDateWidget(){
         val dao = DataBaseUtil.getWidgetDao(this)
         val list = dao.getWidgetByToken(WidgetType.MyWidgetProvider)
-        if(list.size > 0){
+        if(list.isNotEmpty()){
             val dto = list[0]
             dto.name = "我的组件"
             dto.num1 = dto.num1 + 1
@@ -66,6 +65,6 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
     }
 
     fun spliceVideo(){
-        SpliceVideoActivity.start(this)
+        WallpaperManagerUtil.setWallpaperDialog(this,"http://zihao.fun/jzw/img/wallpaper/wallpaper_img_8.jpg")
     }
 }

@@ -27,6 +27,26 @@ import java.io.IOException
 
 object BitmapUtil {
     /**
+     * 保存url文件
+     */
+    fun saveUrl(context: Context, imgUrl: String,ok : (data: String) -> Unit = {},onFailure : () -> Unit = {}){
+        val downloadUtil = FileDownloadUtil(context, DownloadType.Image)
+        if(downloadUtil.isHaveFile(imgUrl)){
+            ok(downloadUtil.getPath(imgUrl))
+        }else{
+            downloadUtil.onDownloadFile(imgUrl,object : FileDownloadUtil.OnDownloadListener() {
+                override fun onSuccess(file: File) {
+                    ok(file.absolutePath)
+                }
+
+                override fun onError(throwable: Throwable) {
+                    onFailure()
+                }
+            })
+        }
+    }
+
+    /**
      * res资源文件转bitmap
      */
     @SuppressLint("UseCompatLoadingForDrawables")

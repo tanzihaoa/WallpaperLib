@@ -107,7 +107,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_margin="16dp"
-            android:text="视频拼接"
+            android:text="设置壁纸"
             app:shapeCorners="20dp"
             android:gravity="center"
             android:textSize="14sp"
